@@ -15,8 +15,16 @@ public class L‰xa {
 		System.out.println(stringNamn + " postnummer?");
 		String stringPost = input.nextLine();
 		System.out.println(stringNamn + " vilken stad bor du i?");
-		String stringstad = input.nextLine();
+		String stringStad = input.nextLine();
 		System.out.println(stringNamn + " vad ‰r ditt telefonnummer?");
 		String stringTele = input.nextLine();
+		
+		System.out.println(stringNamn + " st‰mmer den h‰r informationen?:");
+		System.out.println("Infomation");
+		System.out.println("Namm:    " + stringNamn);
+		System.out.println("≈lder:    " + string≈r);
+		System.out.println("Adress:    " + stringAdress);
+		System.out.println(stringPost + "      " + stringStad);
+		System.out.println("Telefon:    " + stringTele);
 	}
 }
