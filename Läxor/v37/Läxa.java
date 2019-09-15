@@ -6,7 +6,9 @@ public class L‰xa {
 		
 		System.out.println("Vad heter du?");
 		Scanner input = new Scanner(System.in);
-		String string = input.nextLine();
-		System.out.println("Hej " + string);
+		String stringNamn = input.nextLine();
+		System.out.println("Hej " + stringNamn);
+		System.out.println(stringNamn + " hur gammal ‰r du?");
+		String string≈r = input.nextLine();
 	}
 }
