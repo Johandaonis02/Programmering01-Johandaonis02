@@ -23,7 +23,6 @@ public class Homework {
 				S = x;
 			}
 		}
-		
 		System.out.println("Genomsnitt: " + (float)y/10);
 		System.out.println("Störst värdet: " + B);
 		System.out.println("minsta värdet: " + S);
