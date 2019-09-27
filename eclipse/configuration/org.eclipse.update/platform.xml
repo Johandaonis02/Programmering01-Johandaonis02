@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config date="1567671212750" transient="false">
-	<site updateable="true" url="file:/C:/Users/Johan.Daun/.p2/pool/" enabled="true" policy="MANAGED-ONLY">
+<config date="1569565850489" transient="false">
+	<site updateable="true" url="file:../../../../.p2\pool\" enabled="true" policy="MANAGED-ONLY">
 		<feature id="org.eclipse.mylyn.commons.notifications" version="1.16.0.v20180904-2231" url="features/org.eclipse.mylyn.commons.notifications_1.16.0.v20180904-2231/" plugin-identifier="org.eclipse.mylyn.commons.core">
 		</feature>
 		<feature id="org.eclipse.ecf.core.feature" version="1.5.3.v20190423-0625" url="features/org.eclipse.ecf.core.feature_1.5.3.v20190423-0625/">
 		</feature>
 		<feature id="org.eclipse.e4.rcp" version="1.6.500.v20190605-1801" url="features/org.eclipse.e4.rcp_1.6.500.v20190605-1801/">
+		</feature>
+		<feature id="com.genuitec.eclipse.common.explorer.jdt.feature" version="1.11.0.201909171704" url="features/com.genuitec.eclipse.common.explorer.jdt.feature_1.11.0.201909171704/">
 		</feature>
 		<feature id="org.eclipse.equinox.p2.core.feature" version="1.6.200.v20190516-1504" url="features/org.eclipse.equinox.p2.core.feature_1.6.200.v20190516-1504/">
 		</feature>
@@ -73,9 +75,13 @@
 		</feature>
 		<feature id="org.eclipse.egit" version="5.4.0.201906121030-r" url="features/org.eclipse.egit_5.4.0.201906121030-r/">
 		</feature>
+		<feature id="com.genuitec.eclipse.base.feature" version="1.11.0.201909171704" url="features/com.genuitec.eclipse.base.feature_1.11.0.201909171704/">
+		</feature>
 		<feature id="org.eclipse.equinox.p2.extras.feature" version="1.4.400.v20190516-1504" url="features/org.eclipse.equinox.p2.extras.feature_1.4.400.v20190516-1504/">
 		</feature>
 		<feature id="org.eclipse.mylyn.wikitext.editors_feature" version="3.0.29.201812180023" url="features/org.eclipse.mylyn.wikitext.editors_feature_3.0.29.201812180023/" plugin-identifier="org.eclipse.mylyn.wikitext">
+		</feature>
+		<feature id="com.genuitec.eclipse.theming.feature" version="1.11.0.201909171704" url="features/com.genuitec.eclipse.theming.feature_1.11.0.201909171704/">
 		</feature>
 		<feature id="org.eclipse.epp.package.common.feature" version="4.12.0.20190614-1200" url="features/org.eclipse.epp.package.common.feature_4.12.0.20190614-1200/">
 		</feature>
