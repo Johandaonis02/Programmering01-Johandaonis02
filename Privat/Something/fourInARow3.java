@@ -6,13 +6,34 @@ public class fourInARow3 {
 		Scanner input = new Scanner(System.in);
 		int width = 7;
 		int height = 6;
-		int numberOfPlayers = 2;
+		System.out.println("Number of players: ");
+		int numberOfPlayers = input.nextInt();
+		input.nextLine();
 		
 		boolean hasWon;
 		int player = 1;
 		int turn = 1;
 		int[][] cells = new int [width][height];
 		String[] names = new String [numberOfPlayers];
+		char[] playerObject = new char [numberOfPlayers + 1];
+		
+		for(int i = 0; i <= numberOfPlayers; i++) {
+			if(i == 0) {
+				playerObject[i] = '-';
+			}
+			else if(i == 1) {
+				playerObject[i] = 'X';
+			}
+			else if(i == 2) {
+				playerObject[i] = 'O';
+			}
+			else if(i == 3) {
+				playerObject[i] = 'Y';
+			}
+			else {
+				playerObject[i] = (char)(i - 3 + '0');
+			}
+		}
 		
 		for(int y = 0; y<height; y++) {
 			for(int x = 0; x<width; x++) {
@@ -22,19 +43,20 @@ public class fourInARow3 {
 		
 		for(int i = 0; i < numberOfPlayers; i++) {
 			System.out.println("Tell me player " + (i + 1) + "'s name");
-			names[i] = input.nextLine();
+
+			names[i] = input.nextLine();				
 		}
 		
-		for(hasWon = false; hasWon == false && turn <= height * width; turn++) {
+		for(hasWon = false; !hasWon && turn <= height * width; turn++) {
 			//display
-			System.out.println(names[player - 1] + "'s turn");
-			display(height, width, cells);
+			System.out.println(names[player - 1] + "'s turn (" + playerObject[player] + ")");
+			display(playerObject, height, width, cells);
 
 			//play
 			//test column and number
 			int y = height - 1;
 			int x;
-			while(2 > 1) {
+			while(true) {
 				if(names[player - 1].equals("Bot")) {
 					x = (int)(Math.random() * width);
 				}
@@ -63,7 +85,7 @@ public class fourInARow3 {
 				y--;
 			}
 			
-			if(turn >= 7) {
+			if(turn >= numberOfPlayers * 3 + 1) {
 				//diagonals
 				for(int j = -1; j <= 1; j += 2) {
 					for(int i = -3; i <= 3; i++) {
@@ -106,12 +128,11 @@ public class fourInARow3 {
 		
 		if(hasWon == true) {
 			System.out.println(names[player - 1] + " won");
-			display(height, width, cells);
 		}
 		else {
 			System.out.println("Draw");
-			display(height, width, cells);
 		}
+		display(playerObject, height, width, cells);
 	}
 	
 	/**
@@ -120,10 +141,10 @@ public class fourInARow3 {
 	 * @param width
 	 * @param cells 
 	 */
-	public static void display(int height, int width, int cells[][]) {
+	public static void display(char playerObject[], int height, int width, int cells[][]) {
 		for(int y = 0; y<height; y++) {
 			for(int x = 0; x<width; x++) {
-				System.out.print(cells[x][y] + " " );
+				System.out.print(playerObject[cells[x][y]] + " " );
 			}
 			System.out.println();
 		}
