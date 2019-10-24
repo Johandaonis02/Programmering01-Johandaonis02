@@ -48,7 +48,6 @@ public class Metoder {
 		}
 		return(numberOfOccurances);
 	}
-	
 	/**
 	 * Translate from swedish to rövarspråket
 	 * @param str

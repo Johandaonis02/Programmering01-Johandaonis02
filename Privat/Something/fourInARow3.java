@@ -34,7 +34,6 @@ public class fourInARow3 {
 				playerObject[i] = (char)(i - 3 + '0');
 			}
 		}
-		
 		for(int y = 0; y<height; y++) {
 			for(int x = 0; x<width; x++) {
 				cells[x][y] = 0;
