@@ -40,7 +40,7 @@ public class CanvasDemo4InARow extends JFrame {
 			boolean hasWon = false;
 			int numberOfPlayers = 2;
 			boolean botActivate = false;
-			int turn = 0;
+			int turn = 1;
 			
 			for(int x = 0; x < width; x++) {
 				for(int y = 0; y < height; y++) {
@@ -60,8 +60,10 @@ public class CanvasDemo4InARow extends JFrame {
 					System.out.println("red's turn");
 				}
 				else {
-					g.drawString("blue's turn", (int)(0.5 * getWidth() - 30), 20);
-					System.out.println("blue's turn");
+					if(botActivate == false) {
+						g.drawString("blue's turn", (int)(0.5 * getWidth() - 30), 20);
+						System.out.println("blue's turn");
+					}
 				}
 				
 				for(int x = 0; x < width; x++) {
@@ -150,14 +152,39 @@ public class CanvasDemo4InARow extends JFrame {
 					player = (player % numberOfPlayers) + 1;
 				}
 			}
+			
+			for(int x = 0; x < width; x++) {
+				for(int y = 0; y < height; y++) {
+					if(cells[x][y] == 0) {
+						g.drawOval(50 + (int)(((1 + spaceBetween) * length) * x), 50 + (int)(((1 + spaceBetween) * length) * y), length, length);
+					}
+					else if(cells[x][y] == 1) {
+						g.setColor(Color.red);
+						g.fillOval(50 + (int)(((1 + spaceBetween) * length) * x), 50 + (int)(((1 + spaceBetween) * length) * y), length, length);
+						g.setColor(Color.black);
+					}
+					else if(cells[x][y] == 2) {
+						g.setColor(Color.blue);
+						g.fillOval(50 + (int)(((1 + spaceBetween) * length) * x), 50 + (int)(((1 + spaceBetween) * length) * y), length, length);
+						g.setColor(Color.black);
+					}
+				}
+			}
+			
 			if(hasWon == true) {
 				if(player == 1) {
-					g.drawString("The red player won", (int)(0.5 * getWidth() - 30), 20);
+					g.drawString("The red player won", (int)(0.5 * getWidth() - 20), 20);
 					System.out.println("The red player won");
 				}
 				else if(player == 2) {
-					g.drawString("The blue player won", (int)(0.5 * getWidth() - 30), 20);
-					System.out.println("The blue player won");
+					if(botActivate == false) {
+						g.drawString("The blue player won", (int)(0.5 * getWidth() - 20), 20);
+						System.out.println("The blue player won");
+					}
+					else {
+						g.drawString("The bot won", (int)(0.5 * getWidth() - 20), 20);
+						System.out.println("The bot won");
+					}
 				}
 			}
 			else {
