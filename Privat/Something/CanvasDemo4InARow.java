@@ -56,11 +56,17 @@ public class CanvasDemo4InARow extends JFrame {
 			
 			for(hasWon = false; !hasWon && turn <= height * width; turn++)  {
 				if(player == 1) {
+					g.setColor(new Color(0xf0f0f0));
+					g.fillRect(0,0, getWidth(), 50);
+					g.setColor(Color.black);
 					g.drawString("red's turn", (int)(0.5 * getWidth() - 30), 20);
 					System.out.println("red's turn");
 				}
 				else {
 					if(botActivate == false) {
+						g.setColor(new Color(0xf0f0f0));
+						g.fillRect(0,0, getWidth(), 50);
+						g.setColor(Color.black);
 						g.drawString("blue's turn", (int)(0.5 * getWidth() - 30), 20);
 						System.out.println("blue's turn");
 					}
@@ -99,17 +105,23 @@ public class CanvasDemo4InARow extends JFrame {
 							break;
 						}
 						else {
+							g.setColor(new Color(0xf0f0f0));
+							g.fillRect(0,0, getWidth(), 50);
+							g.setColor(Color.black);
 							g.drawString("This column is full", (int)(0.5 * getWidth() - 50), 20);
 							System.out.println("This column is full");
 						}
 					}
 					else {
+						g.setColor(new Color(0xf0f0f0));
+						g.fillRect(0,0, getWidth(), 50);
+						g.setColor(Color.black);
 						g.drawString(newCellX + 1 + " isn't a valid number. Pick a number between 1 and " + width, (int)(0.5 * getWidth() - 50), 20);
 						System.out.println(newCellX + 1 + " isn't a valid number. Pick a number between 1 and " + width);
 					}
 				}
 				
-				while(newCellY > 0) {
+				while(newCellY >= 0) {
 					if(cells[newCellX][newCellY] == 0) {
 						cells[newCellX][newCellY] = player;
 						break;
@@ -173,21 +185,33 @@ public class CanvasDemo4InARow extends JFrame {
 			
 			if(hasWon == true) {
 				if(player == 1) {
-					g.drawString("The red player won", (int)(0.5 * getWidth() - 20), 20);
+					g.setColor(new Color(0xf0f0f0));
+					g.fillRect(0,0, getWidth(), 50);
+					g.setColor(Color.black);
+					g.drawString("The red player won", (int)(0.5 * getWidth() - 55), 20);
 					System.out.println("The red player won");
 				}
 				else if(player == 2) {
 					if(botActivate == false) {
-						g.drawString("The blue player won", (int)(0.5 * getWidth() - 20), 20);
+						g.setColor(new Color(0xf0f0f0));
+						g.fillRect(0,0, getWidth(), 50);
+						g.setColor(Color.black);
+						g.drawString("The blue player won", (int)(0.5 * getWidth() - 55), 20);
 						System.out.println("The blue player won");
 					}
 					else {
+						g.setColor(new Color(0xf0f0f0));
+						g.fillRect(0,0, getWidth(), 50);
+						g.setColor(Color.black);
 						g.drawString("The bot won", (int)(0.5 * getWidth() - 20), 20);
 						System.out.println("The bot won");
 					}
 				}
 			}
 			else {
+				g.setColor(new Color(0xf0f0f0));
+				g.fillRect(0,0, getWidth(), 50);
+				g.setColor(Color.black);
 				g.drawString("Its a draw", (int)(0.5 * getWidth() - 20), 20);
 				System.out.println("Its a draw");
 			}

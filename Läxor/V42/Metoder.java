@@ -4,7 +4,7 @@ public class Metoder {
 	public static void main(String[] args) {
 		double radius = 1;
 		System.out.println(volume(radius));
-		String str = "nahoJ";
+		String str = "test";
 		System.out.println(reverse(str));
 		char c = 'a';
 		System.out.println(count(str, c));
@@ -71,7 +71,6 @@ public class Metoder {
 			else {
 				rovarspraketWord += str.charAt(i);
 			}
-			
 		}
 		return(rovarspraketWord);
 	}
