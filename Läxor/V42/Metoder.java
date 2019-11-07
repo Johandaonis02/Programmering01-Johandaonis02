@@ -4,7 +4,7 @@ public class Metoder {
 	public static void main(String[] args) {
 		double radius = 1;
 		System.out.println(volume(radius));
-		String str = "test";
+		String str = "Johan";
 		System.out.println(reverse(str));
 		char c = 'a';
 		System.out.println(count(str, c));

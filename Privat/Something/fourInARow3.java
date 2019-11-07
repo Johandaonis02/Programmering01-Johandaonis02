@@ -76,7 +76,7 @@ public class fourInARow3 {
 			}
 			
 			//place
-			while(y >= 0) {
+			while(true) {
 				if(cells[x][y] == 0) {
 					cells[x][y] = player;
 					break;
