@@ -9,6 +9,7 @@ public class BrainFuck {
 		int address = 0;
 		int repeatValue = -1;
 		addressSpace.add((byte)(0));
+		String stringOutput = "";
 		
 		for(int i = 0; i < brainFuckInput.length(); i++) {
 			
@@ -22,6 +23,9 @@ public class BrainFuck {
 			
 			else if(brainFuckInput.charAt(i) == '<' && address != 0) {
 				address--;
+				
+				display(address, addressSpace);
+				
 			}
 			
 			else if(brainFuckInput.charAt(i) == '>') {
@@ -29,6 +33,8 @@ public class BrainFuck {
 					addressSpace.add((byte)(0));
 				}
 				address++;
+				
+				display(address, addressSpace);
 			}
 			
 			else if (brainFuckInput.charAt(i) == '[') {
@@ -68,12 +74,32 @@ public class BrainFuck {
 			}	
 			
 			else if(brainFuckInput.charAt(i) == '.') {
-				System.out.print((char)(int)addressSpace.get(address));
+				stringOutput += (char)(int)addressSpace.get(address);
 			}
 			
 			else if(brainFuckInput.charAt(i) == ',') {
 				addressSpace.set(address, (byte)input.next().charAt(0));
 			}
+			
+			else {
+				System.out.println("Error");
+			}
 		}
+		
+		System.out.println(stringOutput);
+	}
+	
+	public static void display(int address, ArrayList addressSpace) {
+		for(int j = 0; j < address; j++) {
+			System.out.print(addressSpace.get(j) + " ");
+		}
+		
+		System.out.print("[" + addressSpace.get(address) + "] ");
+		
+		for(int j = address + 1; j < addressSpace.size(); j++) {
+			System.out.print(addressSpace.get(j) + " ");
+		}
+		
+		System.out.println();
 	}
 }
