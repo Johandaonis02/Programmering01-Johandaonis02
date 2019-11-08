@@ -13,4 +13,14 @@ public class PhysicsLibrary {
 	public static double fahrenheitToCelsius(double fahrenheit) {
 		return((fahrenheit - 30) / 1.8);
 	}
+	
+	
+	/**
+	 * Takes a Kelvin and calculates the responding Celsius value
+	 * @param Kelvin
+	 * @return Celsius
+	 */
+	public static double elsiusToKelvin(double kelvin) {
+		return(kelvin + 272.15);
+	}
 }
