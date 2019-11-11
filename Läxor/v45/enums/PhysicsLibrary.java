@@ -48,5 +48,14 @@ public class PhysicsLibrary {
 		return(deep * g * 1000);
 	}
 	
+	/**
+	 * Calculates the kinetic energy in the system with the kinetic formula.
+	 * @param mass
+	 * @param velocity
+	 * @return The kinetic energy in the system
+	 */
+	public static double kineticEnergy(double mass, double velocity) {
+		return(mass * Math.pow(velocity, 2) / 2);
+	}
 	
 }
