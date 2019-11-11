@@ -7,7 +7,7 @@ public class PhysicsLibrary {
 	
 	//1
 	/**
-	 * Takes a Fahrenheit and calculates the responding Celsius value
+	 * Takes a Fahrenheit and calculates the responding Celsius value.
 	 * @param Fahrenheit 
 	 * @return Celsius
 	 */
@@ -17,7 +17,7 @@ public class PhysicsLibrary {
 	
 	//2
 	/**
-	 * Takes a Kelvin and calculates the responding Celsius value
+	 * Takes a Kelvin and calculates the responding Celsius value.
 	 * @param Kelvin
 	 * @return Celsius
 	 */
@@ -25,16 +25,28 @@ public class PhysicsLibrary {
 		return(kelvin + 272.15);
 	}
 	
+	//3
+	/**
+	 * Calculates the pressure that the fluid acts on a mass with the acceleration g and at a depth.
+	 * @param fluid
+	 * @param deep
+	 * @return pressure in pa
+	 */
+	public static double fluidPressure(FluidTable fluid, double deep, double g) {
+		return(deep * g * fluid.density);
+	}
+	
 	//made question 4 before question 3
 	//4
 	/**
-	 * Calculates the pressure under water with the gravitation constant and depth under water
+	 * Calculates the pressure that water acts on a mass with the acceleration g and at a depth.
 	 * @param deep
 	 * @param g
-	 * @return Pa
+	 * @return pressure in pa
 	 */
 	public static double pressureUnderWater(double deep, double g) {
 		return(deep * g * 1000);
 	}
+	
 	
 }

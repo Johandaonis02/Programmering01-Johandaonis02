@@ -10,6 +10,8 @@ public class BrainFuck {
 		int repeatValue = -1;
 		addressSpace.add((byte)(0));
 		String stringOutput = "";
+        //>++++++++++>+>+[[+++++[>++++++++<-]>.<++++++[>--------<-]+<<<]>.>>[[-]<[>+<-]>>[<<+>+>-]<[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>[-]>+>+<<<-[>+<-]]]]]]]]]]]+>>>]<<<]
+		
 		
 		for(int i = 0; i < brainFuckInput.length(); i++) {
 			
@@ -24,7 +26,7 @@ public class BrainFuck {
 			else if(brainFuckInput.charAt(i) == '<' && address != 0) {
 				address--;
 				
-				display(address, addressSpace);
+				//display(address, addressSpace);
 				
 			}
 			
@@ -34,7 +36,7 @@ public class BrainFuck {
 				}
 				address++;
 				
-				display(address, addressSpace);
+				//display(address, addressSpace);
 			}
 			
 			else if (brainFuckInput.charAt(i) == '[') {
@@ -75,14 +77,11 @@ public class BrainFuck {
 			
 			else if(brainFuckInput.charAt(i) == '.') {
 				stringOutput += (char)(int)addressSpace.get(address);
+//				System.out.print((char)(int)addressSpace.get(address));
 			}
 			
 			else if(brainFuckInput.charAt(i) == ',') {
 				addressSpace.set(address, (byte)input.next().charAt(0));
-			}
-			
-			else {
-				System.out.println("Error");
 			}
 		}
 		
