@@ -24,10 +24,13 @@ public class BrainFuck {
 			}
 			
 			else if(brainFuckInput.charAt(i) == '<' && address != 0) {
+				
+				if(address == 0) {
+					System.out.println("error");
+				}
 				address--;
 				
-				//display(address, addressSpace);
-				
+				//display(address, addressSpace);	
 			}
 			
 			else if(brainFuckInput.charAt(i) == '>') {
@@ -82,6 +85,10 @@ public class BrainFuck {
 			
 			else if(brainFuckInput.charAt(i) == ',') {
 				addressSpace.set(address, (byte)input.next().charAt(0));
+			}
+			
+			else {
+				System.out.println("error");
 			}
 		}
 		
