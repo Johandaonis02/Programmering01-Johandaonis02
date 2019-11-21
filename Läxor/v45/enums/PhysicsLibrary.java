@@ -81,4 +81,15 @@ public class PhysicsLibrary {
 	public static double fallSpeed(double height, double g) {
 		return(Math.sqrt(2*height*g));
 	}
+	
+	//8
+	/**
+	 * the different between last and first to calculate delta.
+	 * @param first
+	 * @param last
+	 * @return the different (delta)
+	 */
+	public static double delta(double first, double last) {
+		return(last - first);
+	}
 }
