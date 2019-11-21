@@ -70,4 +70,15 @@ public class PhysicsLibrary {
 	public static double potentialEnergy(double mass, double height, double g) {
 		return(mass * height * g);
 	}
+	
+	//7
+	/**
+	 * The speed of an object when colliding with the ground when dropped from a height.
+	 * @param height
+	 * @param g
+	 * @return The speed of an object when dropped by a height.
+	 */
+	public static double fallSpeed(double height, double g) {
+		return(Math.sqrt(2*height*g));
+	}
 }
