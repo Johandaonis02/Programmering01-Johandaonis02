@@ -12,7 +12,7 @@ public class PhysicsLibrary {
 	 * @return Celsius
 	 */
 	public static double fahrenheitToCelsius(double fahrenheit) {
-		return((fahrenheit - 30) / 1.8);
+		return((fahrenheit - 32) / 1.8);
 	}
 	
 	//2
@@ -91,5 +91,27 @@ public class PhysicsLibrary {
 	 */
 	public static double delta(double first, double last) {
 		return(last - first);
+	}
+	
+	//9
+	/**
+	 * Mass of a fluid that has a volume and a density as an input.
+	 * @param fluid
+	 * @param volume
+	 * @return mass
+	 */
+	public static double volumeToMass(FluidTable fluid, double volume) {
+		return(fluid.density * volume);
+	}
+	
+	//10
+	/**
+	 * Mass of a gas that has a volume and a density as an input.
+	 * @param gas
+	 * @param volume
+	 * @return mass
+	 */
+	public static double volumeToMass(GasTable gas, double volume) {
+		return(gas.density * volume);
 	}
 }
