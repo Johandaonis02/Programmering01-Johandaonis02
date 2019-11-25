@@ -114,4 +114,15 @@ public class PhysicsLibrary {
 	public static double volumeToMass(GasTable gas, double volume) {
 		return(gas.density * volume);
 	}
+	
+	//11
+	/**
+	 * Mass of a solid object that has a volume and a density as an input.
+	 * @param gas
+	 * @param volume
+	 * @return mass
+	 */
+	public static double volumeToMass(SolidTable solid, double volume) {
+		return(solid.density * volume);
+	}
 }
