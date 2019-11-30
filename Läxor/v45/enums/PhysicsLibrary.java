@@ -176,4 +176,15 @@ public class PhysicsLibrary {
 	public static double work(double force, double distance) {
 		return(force * distance);
 	}
+	
+	//16
+	/**
+	 * The power needed to move an object a fixed time and a fixed work.
+	 * @param work
+	 * @param time
+	 * @return
+	 */
+	public static double power(double work, double time) {
+		return(work / time);
+	}
 }
