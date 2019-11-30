@@ -9,7 +9,8 @@ public class PhysicsLibrary {
 	static double c = 299792458;
 	
 	public static void main(String[] args) {
-		System.out.println("hej på dig");
+		//1
+		System.out.println(volumeToMass(SolidTable.IRON,60) + " g");
 	}
 	
 	//1
@@ -188,17 +189,17 @@ public class PhysicsLibrary {
 		return(work / time);
 	}
 	
-	//17 Inte klar
-	/**
-	 * 
-	 * @param solid
-	 * @param mass
-	 * @param deltaT
-	 * @return
-	 */
-	public static double heat(SolidTable solid, double mass, double deltaT) {
-		
-	}
+//	//17 Inte klar
+//	/**
+//	 * 
+//	 * @param solid
+//	 * @param mass
+//	 * @param deltaT
+//	 * @return
+//	 */
+//	public static double heat(SolidTable solid, double mass, double deltaT) {
+//		
+//	}
 	
 	//20
 	/**
