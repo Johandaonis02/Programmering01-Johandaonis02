@@ -16,6 +16,8 @@ public class PhysicsLibrary {
 		//3 INTE KLAR
 		//4
 		System.out.println(pressureUnderWater(75) + " Pa");
+		//5
+		System.out.println(1.8 + velocityToHeight(60 / 3.6) + " m");
 		
 	}
 	
