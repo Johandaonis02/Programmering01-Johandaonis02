@@ -135,7 +135,7 @@ public class PhysicsLibrary {
 	
 	//12
 	/**
-	 * The distance a object and the time it took to move to a place is given. Output is the velocity of the object.
+	 * The distance an object and the time it took to move to a place is given. Output is the velocity of the object.
 	 * @param distance
 	 * @param time
 	 * @return velocity
@@ -146,7 +146,7 @@ public class PhysicsLibrary {
 	
 	//13
 	/**
-	 * The velocity a object and the time it took to move to a place is given. Output is the distance of the object after the given time.
+	 * The velocity an object and the time it took to move to a place is given. Output is the distance of the object after the given time.
 	 * @param velocity
 	 * @param time
 	 * @return distance
@@ -157,12 +157,23 @@ public class PhysicsLibrary {
 	
 	//14
 	/**
-	 * The time a object took to get to a distance with the given imputs: velocity and distance.
+	 * The time an object took to get to a distance with the given imputs: velocity and distance.
 	 * @param The distance between a start and an end.
 	 * @param The velocity of the object
 	 * @return The time it took for the object to go to the end
 	 */
 	public static double svtTime(double distance, double velocity) {
 		return(velocity / distance);
+	}
+	
+	//15
+	/**
+	 * The work it took to move an object a fixed distance with a force.
+	 * @param force
+	 * @param distance
+	 * @return work
+	 */
+	public static double work(double force, double distance) {
+		return(force * distance);
 	}
 }
