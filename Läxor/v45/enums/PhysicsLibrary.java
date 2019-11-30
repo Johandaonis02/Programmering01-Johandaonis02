@@ -13,6 +13,9 @@ public class PhysicsLibrary {
 		System.out.println(volumeToMass(SolidTable.IRON,60) + " g");
 		//2
 		System.out.println(svtDistance(2.7, 50*60) + " m");
+		//3 INTE KLAR
+		//4
+		System.out.println(pressureUnderWater(75) + " Pa");
 		
 	}
 	
@@ -52,7 +55,6 @@ public class PhysicsLibrary {
 	/**
 	 * Calculates the pressure that water acts on a mass with the acceleration g and at a depth.
 	 * @param deep
-	 * @param g
 	 * @return pressure in pa
 	 */
 	public static double pressureUnderWater(double deep) {
@@ -75,7 +77,6 @@ public class PhysicsLibrary {
 	 * Calculates the potential energy in the system with the potential formula.
 	 * @param mass
 	 * @param height
-	 * @param g
 	 * @returnThe potential energy on an object.
 	 */
 	public static double potentialEnergy(double mass, double height) {
@@ -86,7 +87,6 @@ public class PhysicsLibrary {
 	/**
 	 * The speed of an object when colliding with the ground when dropped from a height.
 	 * @param height
-	 * @param g
 	 * @return The speed of an object when dropped by a height.
 	 */
 	public static double fallSpeed(double height) {
