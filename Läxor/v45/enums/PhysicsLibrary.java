@@ -187,4 +187,26 @@ public class PhysicsLibrary {
 	public static double power(double work, double time) {
 		return(work / time);
 	}
+	
+	//17 Inte klar
+	/**
+	 * 
+	 * @param solid
+	 * @param mass
+	 * @param deltaT
+	 * @return
+	 */
+	public static double heat(SolidTable solid, double mass, double deltaT) {
+		
+	}
+	
+	//20
+	/**
+	 * The maximum height of an object with the start position 0 meters and with a given velocity.
+	 * @param velocity
+	 * @return height
+	 */
+	public static double velocityToHeight(double velocity) {
+		return(velocity * velocity / (2 * g));
+	}
 }
