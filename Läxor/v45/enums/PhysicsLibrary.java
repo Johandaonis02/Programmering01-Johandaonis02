@@ -11,6 +11,9 @@ public class PhysicsLibrary {
 	public static void main(String[] args) {
 		//1
 		System.out.println(volumeToMass(SolidTable.IRON,60) + " g");
+		//2
+		System.out.println(svtDistance(2.7, 50*60) + " m");
+		
 	}
 	
 	//1
