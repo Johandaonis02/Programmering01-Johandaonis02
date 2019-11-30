@@ -1,8 +1,15 @@
 package enums;
 
 public class PhysicsLibrary {
+	
+	static double g = 9.81;
+	static double G = 6.674E-11;
+	static double R = 8.3145;
+	static double p_0 = 1013.25;
+	static double c = 299792458;
+	
 	public static void main(String[] args) {
-		double g = 9.81;
+		System.out.println("hej på dig");
 	}
 	
 	//1
@@ -32,7 +39,7 @@ public class PhysicsLibrary {
 	 * @param deep
 	 * @return pressure in pa
 	 */
-	public static double fluidPressure(FluidTable fluid, double deep, double g) {
+	public static double fluidPressure(FluidTable fluid, double deep) {
 		return(deep * g * fluid.density);
 	}
 	
@@ -44,7 +51,7 @@ public class PhysicsLibrary {
 	 * @param g
 	 * @return pressure in pa
 	 */
-	public static double pressureUnderWater(double deep, double g) {
+	public static double pressureUnderWater(double deep) {
 		return(deep * g * 1000);
 	}
 	
@@ -67,7 +74,7 @@ public class PhysicsLibrary {
 	 * @param g
 	 * @returnThe potential energy on an object.
 	 */
-	public static double potentialEnergy(double mass, double height, double g) {
+	public static double potentialEnergy(double mass, double height) {
 		return(mass * height * g);
 	}
 	
@@ -78,7 +85,7 @@ public class PhysicsLibrary {
 	 * @param g
 	 * @return The speed of an object when dropped by a height.
 	 */
-	public static double fallSpeed(double height, double g) {
+	public static double fallSpeed(double height) {
 		return(Math.sqrt(2*height*g));
 	}
 	
@@ -118,11 +125,44 @@ public class PhysicsLibrary {
 	//11
 	/**
 	 * Mass of a solid object that has a volume and a density as an input.
-	 * @param gas
+	 * @param solid
 	 * @param volume
 	 * @return mass
 	 */
 	public static double volumeToMass(SolidTable solid, double volume) {
 		return(solid.density * volume);
+	}
+	
+	//12
+	/**
+	 * The distance a object and the time it took to move to a place is given. Output is the velocity of the object.
+	 * @param distance
+	 * @param time
+	 * @return velocity
+	 */
+	public static double svtVelocity(double distance, double time) {
+		return(distance / time);
+	}
+	
+	//13
+	/**
+	 * The velocity a object and the time it took to move to a place is given. Output is the distance of the object after the given time.
+	 * @param velocity
+	 * @param time
+	 * @return distance
+	 */
+	public static double svtDistance(double velocity, double time) {
+		return(velocity * time);
+	}
+	
+	//14
+	/**
+	 * The time a object took to get to a distance with the given imputs: velocity and distance.
+	 * @param The distance between a start and an end.
+	 * @param The velocity of the object
+	 * @return The time it took for the object to go to the end
+	 */
+	public static double svtTime(double distance, double velocity) {
+		return(velocity / distance);
 	}
 }

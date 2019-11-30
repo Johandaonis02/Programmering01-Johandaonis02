@@ -22,10 +22,10 @@ class MyCanvas extends Canvas{
 		setSize(1000, 1000);
 	}
 	public void paint(Graphics g) {
-		double zoom = 0.000000001;
-		double lookStartX = -29.01002;
-		double lookStartY = -24.44;
-		int turns = 5000;
+		double zoom = 1;
+		double lookStartX = -100;
+		double lookStartY = -100;
+		int turns = 1000;
 		double zExponent = 2;
 		
 		for(int x = 1; x < 1000; x++) {
