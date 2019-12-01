@@ -19,10 +19,20 @@ public class PhysicsLibrary {
 		System.out.println(pressureUnderWater(75) + " Pa");
 		//5
 		System.out.println(1.8 + velocityToHeight(60 / 3.6) + " m");
-		//6 INTE KLAR
+		//6
+		//100 / 3.6 är antalet meter per sec. Speed / sec = Acceleration. Mass * Acceleration = Force (=) F = 735 * 100 / 3.6 / 4.8. W = F * Sträcka och Sträcka = distance(acceleration, 0, antal sekunder)
+		// Därför är följande arbeter: work(735 * 100 / 3.6 / 4.8, distance(100 / 3.6, 0, 4.8)) och då är svaret arbetet / tid.
+		System.out.println(work(735 * 100 / 3.6 / 4.8, distance(100 / 3.6, 0, 4.8)) / 4.8 + " watt");
 		//7
 		// 0.99 ^ x * g * 12 * 1 = g * 0.5 * 1 (=)  0.99 ^ x = 0.5 / 12
 		System.out.println((int)(Math.log10(potentialEnergy(1,0.5) / potentialEnergy(1,12)) / Math.log10(0.99)) + " times");
+		//8 Hur långt är 5280 feet?
+		System.out.println(feetToMeter(5280) + " m");
+		//9 Hur lång tid tar det att springa 100 meter om man har accelerationen 1 meter per sekund och starthastigheten 0?
+		System.out.println(accelerationAndSpeedToTime(1, 0, 100) + " s");
+		//10 Hur många liter är det i 8000 kvadratcentimeter?
+		System.out.println(litersToCubeCentimeters(8000) + " st");
+		
 	}
 	
 	//1
@@ -250,7 +260,7 @@ public class PhysicsLibrary {
 	 * @param number of feet
 	 * @return number of meters
 	 */
-	public static double feetToMeters(double foot) {
+	public static double feetToMeter(double foot) {
 		return(foot / 3.28);
 	}
 	
@@ -273,7 +283,7 @@ public class PhysicsLibrary {
 	 * @return number of cubic centimeters
 	 */
 	public static double litersToCubeCentimeters(double liter) {
-		return(liter * 1000);
+		return(liter / 1000);
 	}
 	
 	//4
@@ -319,7 +329,7 @@ public class PhysicsLibrary {
      * @return the time it took for the object to move
      */
     public static double accelerationAndSpeedToTime(double acceleration, double startSpeed, double distance) {
-        //(acceleration / 2) * time^2 + startSpeed * time - distance = 0
+        //(acceleration / 2) * time^2 + startSpeed * time - distance = 0 då kan jag använda min förra metod som räknade ut andragradsekvationer.
     	return(pqFormula(2 * startSpeed / acceleration,- 2 * distance / acceleration));
     }
     
@@ -329,7 +339,8 @@ public class PhysicsLibrary {
      * @param number of cube feet
      * @return number of cube meters
      */
-    public static double cubeFeetToCubeMeters(double cubeFoot) {      
+    public static double cubeFeetToCubeMeters(double cubeFoot) {   
+    	//först tar jag och gör om kube fötter till fötter. Sedan till meter och sist till kube meter
     	return(Math.pow(feetToMeters(Math.pow(cubeFoot, 1/3)), 3));
     }
     
@@ -339,7 +350,8 @@ public class PhysicsLibrary {
      * @param number of cube meters
      * @return number of cube feet
      */
-    public static double cubeMetersToCubeFeet(double cubeMeter) {      
+    public static double cubeMetersToCubeFeet(double cubeMeter) { 
+    	//först tar jag och gör om kube meter till meter. Sedan till foot och sist till kube fötter
     	return(Math.pow(Math.pow(cubeMeter, 1/3) * 3.28, 3));
     }
     
