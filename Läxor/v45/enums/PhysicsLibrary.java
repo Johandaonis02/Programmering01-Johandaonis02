@@ -274,4 +274,27 @@ public class PhysicsLibrary {
 	public static double litersToCubeCentimeters(double liter) {
 		return(liter * 1000);
 	}
+	
+	//4
+	/**
+	 * Calculates the weight of an object after a fixed time.
+	 * @param kilo of the object
+	 * @param halveringstid of the material the object is made of
+	 * @param The time you waited for the object to break down
+	 * @return the resulting kg amount of an object after a while
+	 */
+	public static double kiloAfterTime(double kilo, double halveringstid, double time) {
+		return(kilo / (Math.pow(2, time / halveringstid)));
+	}
+	
+	//5
+	/**
+     * Calculates the energy needed to lift an object with a fixed mass to a certain height.
+     * @param mass The mass of the object
+     * @param height The height that the object will be lifted to
+     * @return Returns the energy required
+     */
+    public static double workHeight(double mass, double height) {
+        return(mass * g * height);
+    }
 }
