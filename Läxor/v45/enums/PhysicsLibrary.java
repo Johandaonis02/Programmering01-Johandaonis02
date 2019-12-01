@@ -341,7 +341,7 @@ public class PhysicsLibrary {
      */
     public static double cubeFeetToCubeMeters(double cubeFoot) {   
     	//först tar jag och gör om kube fötter till fötter. Sedan till meter och sist till kube meter
-    	return(Math.pow(feetToMeters(Math.pow(cubeFoot, 1/3)), 3));
+    	return(Math.pow(feetToMeter(Math.pow(cubeFoot, 1/3)), 3));
     }
     
     //9
