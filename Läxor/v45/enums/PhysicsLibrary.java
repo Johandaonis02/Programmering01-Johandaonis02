@@ -195,17 +195,17 @@ public class PhysicsLibrary {
 		return(work / time);
 	}
 	
-//	//17 Inte klar
-//	/**
-//	 * 
-//	 * @param solid
-//	 * @param mass
-//	 * @param deltaT
-//	 * @return
-//	 */
-//	public static double heat(SolidTable solid, double mass, double deltaT) {
-//		
-//	}
+	//17
+	/**
+	 * Calculates the required energy to heat a material using the mass of the material, heat capacity and difference in temperature.
+	 * @param solid the material the object is made of
+	 * @param mass of the material
+	 * @param deltaT difference between the temperatures
+	 * @return the needed energy
+	 */
+	public static double heat(SolidTable solid, double mass, double deltaT) {
+    return(solid.heatCapacity * mass * deltaT);
+	}
 	
 	//20
 	/**
