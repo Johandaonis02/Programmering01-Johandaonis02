@@ -10,7 +10,7 @@ public class PhysicsLibrary {
 	
 	public static void main(String[] args) {
 		//1
-		System.out.println(volumeToMass(SolidTable.IRON,60) + " g");
+		System.out.println(volumeToMass(SolidTable.IRON,60)/1000 + " kg");
 		//2
 		System.out.println(svtDistance(2.7, 50*60) + " m");
 		//3 INTE KLAR
@@ -18,7 +18,8 @@ public class PhysicsLibrary {
 		System.out.println(pressureUnderWater(75) + " Pa");
 		//5
 		System.out.println(1.8 + velocityToHeight(60 / 3.6) + " m");
-		
+		//6 INTE KLAR
+		//7 Denna fråga var om friktion och jag har ingen metod till friktion.
 	}
 	
 	//1
