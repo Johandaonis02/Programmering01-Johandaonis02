@@ -207,6 +207,18 @@ public class PhysicsLibrary {
     return(solid.heatCapacity * mass * deltaT);
 	}
 	
+	//18
+	/**
+	 * Calculates the required energy to heat a fluid using the mass of the fluid, heat capacity and difference in temperature.
+	 * @param fluid the fluid the object is made of
+	 * @param mass of the fluid
+	 * @param deltaT difference between the temperatures
+	 * @return the needed energy
+	 */
+	public static double heat(FluidTable fluid, double mass, double deltaT) {
+    return(fluid.heatCapacity * mass * deltaT);
+	}
+	
 	//20
 	/**
 	 * The maximum height of an object with the start position 0 meters and with a given velocity.
