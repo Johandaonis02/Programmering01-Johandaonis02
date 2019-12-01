@@ -252,4 +252,26 @@ public class PhysicsLibrary {
 	public static double footToMeters(double foot) {
 		return(foot / 3.28);
 	}
+	
+	//2
+	/**
+	 * Calculates the distance an object moved when you have the acceleration, start speed and time.
+	 * @param the acceleration the object had.
+	 * @param the speed the object started with
+	 * @param time it took to go to the end of the line
+	 * @return the distance between start and end
+	 */
+	public static double distance(double acceleration, double startSpeed, double time) {
+		return(startSpeed * time + time * time * acceleration / 2);
+	}
+	
+	//3
+	/**
+	 * Calculates how many cubic centimeters there are in a fixed number of liters
+	 * @param number of liters
+	 * @return number of cubic centimeters
+	 */
+	public static double litersToCubeCentimeters(double liter) {
+		return(liter * 1000);
+	}
 }
