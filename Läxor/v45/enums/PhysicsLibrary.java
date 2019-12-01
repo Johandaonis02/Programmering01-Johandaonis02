@@ -21,6 +21,7 @@ public class PhysicsLibrary {
 		System.out.println(1.8 + velocityToHeight(60 / 3.6) + " m");
 		//6 INTE KLAR
 		//7
+		// 0.99 ^ x * g * 12 * 1 = g * 0.5 * 1 (=)  0.99 ^ x = 0.5 / 12
 		System.out.println((int)(Math.log10(potentialEnergy(1,0.5) / potentialEnergy(1,12)) / Math.log10(0.99)) + " times");
 	}
 	
@@ -245,11 +246,11 @@ public class PhysicsLibrary {
 	
 	//1
 	/**
-	 * 
-	 * @param feet
-	 * @return meters
+	 * Calculates the number of meters in a number of feet.
+	 * @param number of feet
+	 * @return number of meters
 	 */
-	public static double footToMeters(double foot) {
+	public static double feetToMeters(double foot) {
 		return(foot / 3.28);
 	}
 	
@@ -320,5 +321,36 @@ public class PhysicsLibrary {
     public static double accelerationAndSpeedToTime(double acceleration, double startSpeed, double distance) {
         //(acceleration / 2) * time^2 + startSpeed * time - distance = 0
     	return(pqFormula(2 * startSpeed / acceleration,- 2 * distance / acceleration));
+    }
+    
+    //8
+    /**
+     * Calculates how many cube meters there are in a number of cube feet.
+     * @param number of cube feet
+     * @return number of cube meters
+     */
+    public static double cubeFeetToCubeMeters(double cubeFoot) {      
+    	return(Math.pow(feetToMeters(Math.pow(cubeFoot, 1/3)), 3));
+    }
+    
+    //9
+    /**
+     * Calculates how many cube feet there are in a number of cube meters.
+     * @param number of cube meters
+     * @return number of cube feet
+     */
+    public static double cubeMetersToCubeFeet(double cubeMeter) {      
+    	return(Math.pow(Math.pow(cubeMeter, 1/3) * 3.28, 3));
+    }
+    
+    //10
+    /**
+     * Calculates the pressure acted on an object.
+     * @param the area of the object
+     * @param the force acting
+     * @return the pressure
+     */
+    public static double pressure(double area, double force) {      
+    	return(force / area);
     }
 }
