@@ -198,7 +198,7 @@ public class PhysicsLibrary {
 	//17
 	/**
 	 * Calculates the required energy to heat a material using the mass of the material, heat capacity and difference in temperature.
-	 * @param solid the material the object is made of
+	 * @param the solid material the object is made of
 	 * @param mass of the material
 	 * @param deltaT difference between the temperatures
 	 * @return the needed energy
@@ -210,13 +210,25 @@ public class PhysicsLibrary {
 	//18
 	/**
 	 * Calculates the required energy to heat a fluid using the mass of the fluid, heat capacity and difference in temperature.
-	 * @param fluid the fluid the object is made of
+	 * @param the fluid the object is made of
 	 * @param mass of the fluid
 	 * @param deltaT difference between the temperatures
 	 * @return the needed energy
 	 */
 	public static double heat(FluidTable fluid, double mass, double deltaT) {
     return(fluid.heatCapacity * mass * deltaT);
+	}
+	
+	//19
+	/**
+	 * Calculates the required energy to heat a gas using the mass of the gas, heat capacity and difference in temperature.
+	 * @param the gas the object is made of
+	 * @param mass of the fluid
+	 * @param deltaT difference between the temperatures
+	 * @return the needed energy
+	 */
+	public static double heat(GasTable gas, double mass, double deltaT) {
+    return(gas.heatCapacity * mass * deltaT);
 	}
 	
 	//20
