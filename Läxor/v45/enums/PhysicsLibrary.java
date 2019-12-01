@@ -13,20 +13,22 @@ public class PhysicsLibrary {
 		System.out.println(volumeToMass(SolidTable.IRON,60)/1000 + " kg");
 		//2
 		System.out.println(svtDistance(2.7, 50*60) + " m");
-		//3 INTE KLAR
+		//3
+		System.out.println(heat(FluidTable.WATER, 4, 100 - 22) + " j");
 		//4
 		System.out.println(pressureUnderWater(75) + " Pa");
 		//5
 		System.out.println(1.8 + velocityToHeight(60 / 3.6) + " m");
 		//6 INTE KLAR
-		//7 Denna fråga var om friktion och jag har ingen metod till friktion.
+		//7
+		System.out.println((int)(Math.log10(potentialEnergy(1,0.5) / potentialEnergy(1,12)) / Math.log10(0.99)) + " times");
 	}
 	
 	//1
 	/**
 	 * Takes a Fahrenheit and calculates the responding Celsius value.
-	 * @param Fahrenheit 
-	 * @return Celsius
+	 * @param Fahrenheit input in fahrenheit
+	 * @return Celsius output in celsius
 	 */
 	public static double fahrenheitToCelsius(double fahrenheit) {
 		return((fahrenheit - 32) / 1.8);
@@ -35,18 +37,18 @@ public class PhysicsLibrary {
 	//2
 	/**
 	 * Takes a Kelvin and calculates the responding Celsius value.
-	 * @param Kelvin
-	 * @return Celsius
+	 * @param Kelvin input in kelvin
+	 * @return Celsius output in celsius
 	 */
 	public static double elsiusToKelvin(double kelvin) {
-		return(kelvin + 272.15);
+		return(kelvin - 272.15);
 	}
 	
 	//3
 	/**
 	 * Calculates the pressure that the fluid acts on a mass with the acceleration g and at a depth.
-	 * @param fluid
-	 * @param deep
+	 * @param fluid what kind of fluid is it
+	 * @param deep how deep you are calculating the pressure
 	 * @return pressure in pa
 	 */
 	public static double fluidPressure(FluidTable fluid, double deep) {
@@ -57,7 +59,7 @@ public class PhysicsLibrary {
 	//4
 	/**
 	 * Calculates the pressure that water acts on a mass with the acceleration g and at a depth.
-	 * @param deep
+	 * @param deep how deep you are calculating the pressure
 	 * @return pressure in pa
 	 */
 	public static double pressureUnderWater(double deep) {
@@ -67,8 +69,8 @@ public class PhysicsLibrary {
 	//5
 	/**
 	 * Calculates the kinetic energy in the system with the kinetic formula.
-	 * @param mass
-	 * @param velocity
+	 * @param mass of an object
+	 * @param velocity of an object
 	 * @return The kinetic energy in the system.
 	 */
 	public static double kineticEnergy(double mass, double velocity) {
@@ -78,8 +80,8 @@ public class PhysicsLibrary {
 	//6
 	/**
 	 * Calculates the potential energy in the system with the potential formula.
-	 * @param mass
-	 * @param height
+	 * @param mass of an object
+	 * @param height above the ground
 	 * @returnThe potential energy on an object.
 	 */
 	public static double potentialEnergy(double mass, double height) {
@@ -89,7 +91,7 @@ public class PhysicsLibrary {
 	//7
 	/**
 	 * The speed of an object when colliding with the ground when dropped from a height.
-	 * @param height
+	 * @param height above the ground
 	 * @return The speed of an object when dropped by a height.
 	 */
 	public static double fallSpeed(double height) {
@@ -99,8 +101,8 @@ public class PhysicsLibrary {
 	//8
 	/**
 	 * the different between last and first to calculate delta.
-	 * @param first
-	 * @param last
+	 * @param first is the first value
+	 * @param last is the second value
 	 * @return the different (delta)
 	 */
 	public static double delta(double first, double last) {
@@ -110,9 +112,9 @@ public class PhysicsLibrary {
 	//9
 	/**
 	 * Mass of a fluid that has a volume and a density as an input.
-	 * @param fluid
-	 * @param volume
-	 * @return mass
+	 * @param fluid what kind of fluid is it?
+	 * @param volume volume of the fluid
+	 * @return mass mass of the fluid
 	 */
 	public static double volumeToMass(FluidTable fluid, double volume) {
 		return(fluid.density * volume);
@@ -121,9 +123,9 @@ public class PhysicsLibrary {
 	//10
 	/**
 	 * Mass of a gas that has a volume and a density as an input.
-	 * @param gas
-	 * @param volume
-	 * @return mass
+	 * @param gas what kind of gas is it?
+	 * @param volume volume of the gas
+	 * @return mass mass of the gas
 	 */
 	public static double volumeToMass(GasTable gas, double volume) {
 		return(gas.density * volume);
@@ -132,9 +134,9 @@ public class PhysicsLibrary {
 	//11
 	/**
 	 * Mass of a solid object that has a volume and a density as an input.
-	 * @param solid
-	 * @param volume
-	 * @return mass
+	 * @param solid what kind of solid is it?
+	 * @param volume volume of the solid
+	 * @return mass mass of the solid
 	 */
 	public static double volumeToMass(SolidTable solid, double volume) {
 		return(solid.density * volume);
@@ -143,9 +145,9 @@ public class PhysicsLibrary {
 	//12
 	/**
 	 * The distance an object and the time it took to move to a place is given. Output is the velocity of the object.
-	 * @param distance
-	 * @param time
-	 * @return velocity
+	 * @param distance between start and end
+	 * @param time it took for the object to get to the end
+	 * @return velocity of the object
 	 */
 	public static double svtVelocity(double distance, double time) {
 		return(distance / time);
@@ -154,9 +156,9 @@ public class PhysicsLibrary {
 	//13
 	/**
 	 * The velocity an object and the time it took to move to a place is given. Output is the distance of the object after the given time.
-	 * @param velocity
-	 * @param time
-	 * @return distance
+	 * @param velocity of the object
+	 * @param time it took for the object to get to the end
+	 * @return distance between start and end
 	 */
 	public static double svtDistance(double velocity, double time) {
 		return(velocity * time);
@@ -176,9 +178,9 @@ public class PhysicsLibrary {
 	//15
 	/**
 	 * The work it took to move an object a fixed distance with a force.
-	 * @param force
-	 * @param distance
-	 * @return work
+	 * @param force it took to move an object
+	 * @param distance you moved the object
+	 * @return the work it took
 	 */
 	public static double work(double force, double distance) {
 		return(force * distance);
@@ -187,9 +189,9 @@ public class PhysicsLibrary {
 	//16
 	/**
 	 * The power needed to move an object a fixed time and a fixed work.
-	 * @param work
-	 * @param time
-	 * @return
+	 * @param the work it took
+	 * @param the time it took
+	 * @return the power spent
 	 */
 	public static double power(double work, double time) {
 		return(work / time);
@@ -234,10 +236,20 @@ public class PhysicsLibrary {
 	//20
 	/**
 	 * The maximum height of an object with the start position 0 meters and with a given velocity.
-	 * @param velocity
-	 * @return height
+	 * @param velocity of the object at time = 0
+	 * @return height it will get up to
 	 */
 	public static double velocityToHeight(double velocity) {
 		return(velocity * velocity / (2 * g));
+	}
+	
+	//1
+	/**
+	 * 
+	 * @param feet
+	 * @return meters
+	 */
+	public static double footToMeters(double foot) {
+		return(foot / 3.28);
 	}
 }
