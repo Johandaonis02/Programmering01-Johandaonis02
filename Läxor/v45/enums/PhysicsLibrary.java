@@ -294,7 +294,31 @@ public class PhysicsLibrary {
      * @param height The height that the object will be lifted to
      * @return Returns the energy required
      */
-    public static double workHeight(double mass, double height) {
+    public static double energyNeeded(double mass, double height) {
         return(mass * g * height);
+    }
+    
+    //6
+    /**
+     * Calculates on of the x values to x^2 + p*x + q = 0.
+     * @param p the confession of the x^1 term in a quadratic equation
+     * @param q the confession of the x^0 term in a quadratic equation
+     * @return the highest x value to make the equation true
+     */
+    public static double pqFormula(double p, double q) {
+        return(- p/2 + Math.sqrt((p/2) * (p/2) - q));
+    }
+    
+    //7
+    /**
+     * Calculates the time it took for an object to move a fixed distance with a start speed and a fixed acceleration.
+     * @param the acceleration of the object
+     * @param the speed at time = 0
+     * @param the distance the object should move
+     * @return the time it took for the object to move
+     */
+    public static double accelerationAndSpeedToTime(double acceleration, double startSpeed, double distance) {
+        //(acceleration / 2) * time^2 + startSpeed * time - distance = 0
+    	return(pqFormula(2 * startSpeed / acceleration,- 2 * distance / acceleration));
     }
 }
