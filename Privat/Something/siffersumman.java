@@ -4,7 +4,7 @@ public class siffersumman {
 	public static void main(String[] args) {
 			
 		Scanner input = new Scanner(System.in);
-		System.out.println((-2)%3);
+		
 		int x = input.nextInt();
 		int sum = 0;
 		

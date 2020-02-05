@@ -83,7 +83,7 @@ public class Window extends JFrame implements MouseListener {
 				}
 				g.drawOval((int)ball.x, (int)ball.y, 2 * (int)ball.radius, 2 * (int)ball.radius);
 			}
-			//invalidate();
+			invalidate();
 		}
 	}
 

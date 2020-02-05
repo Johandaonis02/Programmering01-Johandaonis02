@@ -18,7 +18,7 @@ public class FindingTheSqrt {
 	
 	public static double polynom() {
 		//poly[n] = pn (p0 + p1x + p2x^2 + ... + pnx^n)
-		double poly[] = {-3,0,1,0,0,0};
+		double poly[] = {-2,0,1,0,0,0};
 		double output = 1.7;
 		double function = 0;
 		double derivative = 0;
