@@ -18,7 +18,7 @@ public class CanvasAWT extends JFrame {
 
 class MyCanvas extends Canvas{
 	public MyCanvas() {
-		setBackground(Color.WHITE);
+		setBackground(Color.ORANGE);
 		setSize(1000, 1000);
 	}
 	public void paint(Graphics g) {
