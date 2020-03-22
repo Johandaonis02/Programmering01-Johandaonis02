@@ -6,6 +6,7 @@ public class TalSpelet {
 		int difficultyInt;
 		int NumberOfGuesses;
 		int treasurerPosition;
+		boolean playerIsPlaying = true;
 		Scanner input = new Scanner(System.in);
 		
 		//Text about the game.
@@ -89,51 +90,17 @@ public class TalSpelet {
 		}
 		
 		//Player selecting first guess.
-		while(true) {
-			try {
-				int playerGuess = input.nextInt();
-				
-				if(difficultyInt == 0) {
-					if(1 <= playerGuess && playerGuess <= 15) { 
-						break;
-					}
-					else {
-						System.out.println("Gissningen måste vara mellan 1 och 15");
-					}
-				}
-				else if(difficultyInt == 1) {
-					if(1 <= playerGuess && playerGuess <= 50) { 
-						break;
-					}
-					else {
-						System.out.println("Gissningen måste vara mellan 1 och 50");
-					}
-				}
-				else if(difficultyInt == 2) {
-					if(1 <= playerGuess && playerGuess <= 200) { 
-						break;
-					}
-					else {
-						System.out.println("Gissningen måste vara mellan 1 och 200");
-					}
-				}
-				else {
-					if(1 <= playerGuess && playerGuess <= 1000) { 
-						break;
-					}
-					else {
-						System.out.println("Gissningen måste vara mellan 1 och 1000");
-					}
-				}
-			}
-			catch (Exception notAnInt) {
-				System.out.println("Din gissning måste vara ett heltal. Du kan inte skriva " + input.nextLine());
-			}
+		int playerGuess = PlayerGuessing(difficultyInt);
+		NumberOfGuesses--;
+		
+		while(playerIsPlaying){
+			RandomClues(difficultyInt, playerGuess, treasurerPosition);
+			playerGuess = PlayerGuessing(difficultyInt);
+			NumberOfGuesses--;
 		}
-	
 	}
 		
-	public static void Clue(int difficultyInt, int playerGuess, int treasurerPosition) {
+	public static void RandomClues(int difficultyInt, int playerGuess, int treasurerPosition) {
 		
 		boolean oneFalse = false;
 		int clues = 3;
@@ -155,28 +122,36 @@ public class TalSpelet {
 			int selectClue = -1;
 			
 			if(difficultyInt == 0) {
-				while(selectClue != 3 || selectClue != 4 || selectClue != 6 || selectClue != 8) {
+				while(selectClue != 3 && selectClue != 4 && selectClue != 6 && selectClue != 8) {
 					selectClue = (int)(Math.random() * 8 + 1);
 				}
 			}
 			else if(difficultyInt == 1) {
-				while(selectClue != 1 || selectClue != 2 || selectClue != 3 || selectClue != 4 || selectClue != 5 || selectClue != 6 || selectClue != 7) {
+				while(selectClue != 1 && selectClue != 2 && selectClue != 3 && selectClue != 4 && selectClue != 5 && selectClue != 6 && selectClue != 7) {
 					selectClue = (int)(Math.random() * 8 + 1);
 				}
 			}
 			else if(difficultyInt == 2) {
-				while(selectClue != 1 || selectClue != 2 || selectClue != 4 || selectClue != 5 || selectClue != 6 || selectClue != 7) {
+				while(selectClue != 1 && selectClue != 2 && selectClue != 4 && selectClue != 5 && selectClue != 6 && selectClue != 7) {
 					selectClue = (int)(Math.random() * 8 + 1);
 				}
 			}
 			else {
-				while(selectClue != 4 || selectClue != 5 || selectClue != 6 || selectClue != 7) {
+				while(selectClue != 4 && selectClue != 5 && selectClue != 6 && selectClue != 7) {
 					selectClue = (int)(Math.random() * 8 + 1);
 				}
 			}
 			
 			if(selectClue == 1) {
-			
+				if(TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && !oneFalse || !TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && oneFalse) {
+					System.out.println("Talet du letar efter är en faktor av talet du gissa");
+				}
+				else {
+					System.out.println("Talet du letar efter är INTE en faktor av talet du gissa");
+				}
+			}
+			else if(){
+				INTE KLAR
 			}
 		}
 	}
@@ -187,6 +162,50 @@ public class TalSpelet {
 		}
 		else {
 			return false;
+		}
+	}
+
+	public static int PlayerGuessing(int difficultyInt) {
+		while(true) {
+			try {
+				int playerGuess = input.nextInt();
+				
+				if(difficultyInt == 0) {
+					if(1 <= playerGuess && playerGuess <= 15) { 
+						return playerGuess;
+					}
+					else {
+						System.out.println("Gissningen måste vara mellan 1 och 15");
+					}
+				}
+				else if(difficultyInt == 1) {
+					if(1 <= playerGuess && playerGuess <= 50) { 
+						return playerGuess;
+					}
+					else {
+						System.out.println("Gissningen måste vara mellan 1 och 50");
+					}
+				}
+				else if(difficultyInt == 2) {
+					if(1 <= playerGuess && playerGuess <= 200) { 
+						return playerGuess;
+					}
+					else {
+						System.out.println("Gissningen måste vara mellan 1 och 200");
+					}
+				}
+				else {
+					if(1 <= playerGuess && playerGuess <= 1000) { 
+						return playerGuess;
+					}
+					else {
+						System.out.println("Gissningen måste vara mellan 1 och 1000");
+					}
+				}
+			}
+			catch (Exception notAnInt) {
+				System.out.println("Din gissning måste vara ett heltal. Du kan inte skriva " + input.nextLine());
+			}
 		}
 	}
 }
