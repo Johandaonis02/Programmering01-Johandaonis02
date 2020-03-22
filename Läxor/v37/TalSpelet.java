@@ -4,9 +4,10 @@ public class TalSpelet {
 	public static void main(String[] args) {
 		//difficultyInt 0 = lätt, 1 = mellan, 2 = svår and 3 = omöjlig. 
 		int difficultyInt;
-		int NumberOfGuesses;
+		int numberOfGuesses;
 		int treasurerPosition;
-		boolean playerIsPlaying = true;
+		boolean playerHasLost = false;
+		boolean playerHasWon = false;
 		Scanner input = new Scanner(System.in);
 		
 		//Text about the game.
@@ -25,28 +26,28 @@ public class TalSpelet {
 			if (difficultyString.toUpperCase().equals("LÄTT")) {
 				System.out.println("På skattjakten får du tre ledar per gissning.");
 				difficultyInt = 0;
-				NumberOfGuesses = 5;
+				numberOfGuesses = 5;
 				treasurerPosition = (int)(Math.random() * 16);
 				break;
 			}
 			else if (difficultyString.toUpperCase().equals("MELLAN")) {
 				System.out.println("I jakten på juvelerna från Atlantis får du en ledtråd per gissning.");
 				difficultyInt = 1;
-				NumberOfGuesses = 7;
+				numberOfGuesses = 7;
 				treasurerPosition = (int)(Math.random() * 51);
 				break;
 			}
 			else if (difficultyString.toUpperCase().equals("SVÅR")) {
 				System.out.println("Harald Blåtand var en listig människa och ville missleda de som letade efter hans rikedomar. Därför får du en fel och två rätta ledtrådar varje gång du gissar.");
 				difficultyInt = 2;
-				NumberOfGuesses = 10;
+				numberOfGuesses = 10;
 				treasurerPosition = (int)(Math.random() * 201);
 				break;
 			}
 			else if (difficultyString.toUpperCase().equals("OMÖJLIG")) {
 				System.out.println("Mansa Moussa var en försiktig man. För varje gissning du gör får du två rätta och en fel ledtråd.");
 				difficultyInt = 3;
-				NumberOfGuesses = 10;
+				numberOfGuesses = 10;
 				treasurerPosition = (int)(Math.random() * 1001);
 				break;
 			}
@@ -91,16 +92,26 @@ public class TalSpelet {
 		
 		//Player selecting first guess.
 		int playerGuess = PlayerGuessing(difficultyInt);
-		NumberOfGuesses--;
+		numberOfGuesses--;
 		
-		while(playerIsPlaying){
+		while(playerHasLost == false && playerHasWon == false){
 			RandomClues(difficultyInt, playerGuess, treasurerPosition);
+			System.out.println(numberOfGuesses);
+			System.out.println(treasurerPosition);
 			playerGuess = PlayerGuessing(difficultyInt);
-			NumberOfGuesses--;
+			numberOfGuesses--;
+			if(numberOfGuesses == 0) {
+				playerHasLost = true;
+			}
+			if(playerGuess == treasurerPosition) {
+				playerHasLost = false;
+				playerHasWon = true;
+			}
 		}
 	}
 		
 	public static void RandomClues(int difficultyInt, int playerGuess, int treasurerPosition) {
+		int falseClue = -1;
 		
 		boolean oneFalse = false;
 		int clues = 3;
@@ -114,7 +125,7 @@ public class TalSpelet {
 		}
 		
 		if(oneFalse) {
-			int falseClue = (int)(Math.random() * clues + 1);
+			falseClue = (int)(Math.random() * clues + 1);
 		}
 		
 		for (int i = 0; i < clues; i++) {
@@ -143,15 +154,15 @@ public class TalSpelet {
 			}
 			
 			if(selectClue == 1) {
-				if(TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && !oneFalse || !TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && oneFalse) {
+				if(TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && i != falseClue || !TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && i == falseClue) {
 					System.out.println("Talet du letar efter är en faktor av talet du gissa");
 				}
 				else {
 					System.out.println("Talet du letar efter är INTE en faktor av talet du gissa");
 				}
 			}
-			else if(){
-				INTE KLAR
+			else{
+				System.out.println("Jag är inte klar");
 			}
 		}
 	}
@@ -166,6 +177,7 @@ public class TalSpelet {
 	}
 
 	public static int PlayerGuessing(int difficultyInt) {
+		Scanner input = new Scanner(System.in);
 		while(true) {
 			try {
 				int playerGuess = input.nextInt();
