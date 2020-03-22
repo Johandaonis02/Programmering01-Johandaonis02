@@ -130,5 +130,63 @@ public class TalSpelet {
 				System.out.println("Din gissning måste vara ett heltal. Du kan inte skriva " + input.nextLine());
 			}
 		}
+	
+	}
+		
+	public static void Clue(int difficultyInt, int playerGuess, int treasurerPosition) {
+		
+		boolean oneFalse = false;
+		int clues = 3;
+		
+		if(difficultyInt == 2 || difficultyInt == 3) {
+			oneFalse = true;
+		}
+		
+		if(difficultyInt == 1) {
+			clues = 1; 
+		}
+		
+		if(oneFalse) {
+			int falseClue = (int)(Math.random() * clues + 1);
+		}
+		
+		for (int i = 0; i < clues; i++) {
+			
+			int selectClue = -1;
+			
+			if(difficultyInt == 0) {
+				while(selectClue != 3 || selectClue != 4 || selectClue != 6 || selectClue != 8) {
+					selectClue = (int)(Math.random() * 8 + 1);
+				}
+			}
+			else if(difficultyInt == 1) {
+				while(selectClue != 1 || selectClue != 2 || selectClue != 3 || selectClue != 4 || selectClue != 5 || selectClue != 6 || selectClue != 7) {
+					selectClue = (int)(Math.random() * 8 + 1);
+				}
+			}
+			else if(difficultyInt == 2) {
+				while(selectClue != 1 || selectClue != 2 || selectClue != 4 || selectClue != 5 || selectClue != 6 || selectClue != 7) {
+					selectClue = (int)(Math.random() * 8 + 1);
+				}
+			}
+			else {
+				while(selectClue != 4 || selectClue != 5 || selectClue != 6 || selectClue != 7) {
+					selectClue = (int)(Math.random() * 8 + 1);
+				}
+			}
+			
+			if(selectClue == 1) {
+			
+			}
+		}
+	}
+	
+	public static boolean TestIfAIsAFactorOfB(int a, int b) {
+		if(((int)(b/a)) * a == b) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
