@@ -6,12 +6,13 @@ public class TalSpelet {
 		int difficultyInt;
 		int numberOfGuesses;
 		int treasurePosition;
+		boolean playerIsPlaying = true;
 		
 		Scanner input = new Scanner(System.in);
 		
 		//The while loop is there to restart the same if needed
 		while(playerIsPlaying) {
-			boolean playerIsPlaying = true;
+			playerIsPlaying = true;
 			boolean playerHasLost = false;
 			boolean playerHasWon = false;
 			
@@ -32,28 +33,28 @@ public class TalSpelet {
 					System.out.println("På skattjakten får du tre ledar per gissning.");
 					difficultyInt = 0;
 					numberOfGuesses = 5;
-					treasurePosition = (int)(Math.random() * 16);
+					treasurePosition = (int)(Math.random() * 15 + 1);
 					break;
 				}
 				else if (difficultyString.toUpperCase().equals("MEDEL")) {
 					System.out.println("I jakten på juvelerna från Atlantis får du en ledtråd per gissning.");
 					difficultyInt = 1;
 					numberOfGuesses = 7;
-					treasurePosition = (int)(Math.random() * 51);
+					treasurePosition = (int)(Math.random() * 50 + 1);
 					break;
 				}
 				else if (difficultyString.toUpperCase().equals("SVÅRT")) {
 					System.out.println("Harald Blåtand var en listig människa och ville missleda de som letade efter hans rikedomar. Därför får du en fel och två rätta ledtrådar varje gång du gissar.");
 					difficultyInt = 2;
 					numberOfGuesses = 10;
-					treasurePosition = (int)(Math.random() * 201);
+					treasurePosition = (int)(Math.random() * 200 + 1);
 					break;
 				}
 				else if (difficultyString.toUpperCase().equals("OMÖJLIGT")) {
 					System.out.println("Mansa Moussa var en försiktig man. För varje gissning du gör får du två rätta och en fel ledtråd.");
 					difficultyInt = 3;
 					numberOfGuesses = 10;
-					treasurePosition = (int)(Math.random() * 1001);
+					treasurePosition = (int)(Math.random() * 1000 + 1);
 					break;
 				}
 				else {
@@ -109,12 +110,14 @@ public class TalSpelet {
 				playerGuess = PlayerGuessing(difficultyInt);
 				
 				numberOfGuesses--;
-				if(numberOfGuesses == 0) {
-					playerHasLost = true;
-				}
+				
+				//Test if player won
 				if(playerGuess == treasurePosition) {
-					playerHasLost = false;
 					playerHasWon = true;
+				}
+				//Test if player lost
+				else if(numberOfGuesses == 0) {
+					playerHasLost = true;
 				}
 			}
 			
@@ -148,6 +151,7 @@ public class TalSpelet {
 			oneFalse = true;
 		}
 		
+		//difficulty 1 (medel) is the only difficulty with one clue per guess so 3 clues is default because you get 3 clues per guess for rest of the difficulties
 		if(difficultyInt == 1) {
 			clues = 1; 
 		}
@@ -182,6 +186,7 @@ public class TalSpelet {
 				}
 			}
 			
+			//Write out the clue(s)
 			if(selectClue == 1) {
 				if(TestIfNumber1IsAFactorOfNumber2(treasurePosition, playerGuess) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(treasurePosition, playerGuess) && i == falseClue) {
 					System.out.println("Talet du letar efter är en faktor av talet du gissa");
@@ -215,7 +220,7 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 5) {
-				if(TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+				if(TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurePosition) && i != falseClue || !TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurePosition) && i == falseClue) {
 					System.out.println("Din gissning och talet du letar efter har en gemensam siffra");
 				}
 				else {
@@ -223,7 +228,7 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 6) {
-				if(TestIfNumberIsPrime(treasurerPosition) && i != falseClue || !TestIfNumberIsPrime(treasurerPosition) && i == falseClue) {
+				if(TestIfNumberIsPrime(treasurePosition) && i != falseClue || !TestIfNumberIsPrime(treasurePosition) && i == falseClue) {
 					System.out.println("Talet du letar efter är ett primtal");
 				}
 				else {
@@ -231,7 +236,7 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 7) {
-				if(TestIfNumberIsASquareNumber(treasurerPosition) && i != falseClue || !TestIfNumberIsASquareNumber(treasurerPosition) && i == falseClue) {
+				if(TestIfNumberIsASquareNumber(treasurePosition) && i != falseClue || !TestIfNumberIsASquareNumber(treasurePosition) && i == falseClue) {
 					System.out.println("Talet du letar efter är en perfekt kvadrat");
 				}
 				else {
@@ -239,7 +244,7 @@ public class TalSpelet {
 				}
 			}
 			else {
-				if(TestIfNumberIsEven(treasurerPosition) && i != falseClue || !TestIfNumberIsEven(treasurerPosition) && i == falseClue) {
+				if(TestIfNumberIsEven(treasurePosition) && i != falseClue || !TestIfNumberIsEven(treasurePosition) && i == falseClue) {
 					System.out.println("Talet du letar efter är jämnt");
 				}
 				else {
