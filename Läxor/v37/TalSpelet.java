@@ -5,7 +5,7 @@ public class TalSpelet {
 		//difficultyInt 0 = lätt, 1 = mellan, 2 = svår and 3 = omöjlig. 
 		int difficultyInt;
 		int numberOfGuesses;
-		int treasurerPosition;
+		int treasurePosition;
 		boolean playerHasLost = false;
 		boolean playerHasWon = false;
 		Scanner input = new Scanner(System.in);
@@ -27,28 +27,28 @@ public class TalSpelet {
 				System.out.println("På skattjakten får du tre ledar per gissning.");
 				difficultyInt = 0;
 				numberOfGuesses = 5;
-				treasurerPosition = (int)(Math.random() * 16);
+				treasurePosition = (int)(Math.random() * 16);
 				break;
 			}
 			else if (difficultyString.toUpperCase().equals("MELLAN")) {
 				System.out.println("I jakten på juvelerna från Atlantis får du en ledtråd per gissning.");
 				difficultyInt = 1;
 				numberOfGuesses = 7;
-				treasurerPosition = (int)(Math.random() * 51);
+				treasurePosition = (int)(Math.random() * 51);
 				break;
 			}
 			else if (difficultyString.toUpperCase().equals("SVÅR")) {
 				System.out.println("Harald Blåtand var en listig människa och ville missleda de som letade efter hans rikedomar. Därför får du en fel och två rätta ledtrådar varje gång du gissar.");
 				difficultyInt = 2;
 				numberOfGuesses = 10;
-				treasurerPosition = (int)(Math.random() * 201);
+				treasurePosition = (int)(Math.random() * 201);
 				break;
 			}
 			else if (difficultyString.toUpperCase().equals("OMÖJLIG")) {
 				System.out.println("Mansa Moussa var en försiktig man. För varje gissning du gör får du två rätta och en fel ledtråd.");
 				difficultyInt = 3;
 				numberOfGuesses = 10;
-				treasurerPosition = (int)(Math.random() * 1001);
+				treasurePosition = (int)(Math.random() * 1001);
 				break;
 			}
 			else {
@@ -95,17 +95,28 @@ public class TalSpelet {
 		numberOfGuesses--;
 		
 		while(playerHasLost == false && playerHasWon == false){
-			RandomClues(difficultyInt, playerGuess, treasurerPosition);
+			System.out.println("Ledtrådar:");
+			RandomClues(difficultyInt, playerGuess, treasurePosition);
+			
+			System.out.println();
 			System.out.println("Du har " + numberOfGuesses + " antal gissningar kvar");
 			playerGuess = PlayerGuessing(difficultyInt);
+			
 			numberOfGuesses--;
 			if(numberOfGuesses == 0) {
 				playerHasLost = true;
 			}
-			if(playerGuess == treasurerPosition) {
+			if(playerGuess == treasurePosition) {
 				playerHasLost = false;
 				playerHasWon = true;
 			}
+		}
+		
+		if(playerHasWon) {
+			System.out.println("Du vann! Du klarade spelet med " + numberOfGuesses + " gissningar kvar! Om du vill köra om spelet skriver du omstart" );
+		}
+		else {
+			System.out.println("Du förlorade! Talet var " + treasurePosition + " Om du vill köra om spelet skriver du omstart");
 		}
 	}
 		
@@ -202,11 +213,19 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 7) {
-				if(TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i == falseClue) {
-					System.out.println("Din gissning och talet du letar efter har en gemensam siffra");
+				if(TestIfNumberIsASquareNumber(treasurerPosition) && i != falseClue || !TestIfNumberIsASquareNumber(treasurerPosition) && i == falseClue) {
+					System.out.println("Talet du letar efter är en perfekt kvadrat");
 				}
 				else {
-					System.out.println("Din gissning och talet du letar efter har INTE en gemensam siffra");
+					System.out.println("Talet du letar efter är INTE en perfekt kvadrat");
+				}
+			}
+			else {
+				if(TestIfNumberIsEven(treasurerPosition) && i != falseClue || !TestIfNumberIsEven(treasurerPosition) && i == falseClue) {
+					System.out.println("Talet du letar efter är jämnt");
+				}
+				else {
+					System.out.println("Talet du letar efter är ojämnt");
 				}
 			}
 		}
@@ -305,5 +324,19 @@ public class TalSpelet {
 			}
 		}
 		return true;
+	}
+	
+	public static boolean TestIfNumberIsASquareNumber(int number) {
+		if(number == Math.pow(Math.sqrt(number), 2)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean TestIfNumberIsEven(int number) {
+		if(TestIfNumber1IsAFactorOfNumber2(2, number)) {
+			return true;
+		}
+		return false;
 	}
 }
