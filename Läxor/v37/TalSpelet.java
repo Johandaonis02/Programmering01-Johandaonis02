@@ -132,7 +132,13 @@ public class TalSpelet {
 		}
 	}
 		
-	public static void RandomClues(int difficultyInt, int playerGuess, int treasurerPosition) {
+	/**
+	 * Gives the player clues
+	 * @param difficultyInt is the difficulty level
+	 * @param playerGuess is the players guess on where the treasure is located
+	 * @param treasurePosition is the treasure's position
+	 */
+	public static void RandomClues(int difficultyInt, int playerGuess, int treasurePosition) {
 		int falseClue = -1;
 		
 		boolean oneFalse = false;
@@ -177,7 +183,7 @@ public class TalSpelet {
 			}
 			
 			if(selectClue == 1) {
-				if(TestIfNumber1IsAFactorOfNumber2(treasurerPosition, playerGuess) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(treasurerPosition, playerGuess) && i == falseClue) {
+				if(TestIfNumber1IsAFactorOfNumber2(treasurePosition, playerGuess) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(treasurePosition, playerGuess) && i == falseClue) {
 					System.out.println("Talet du letar efter är en faktor av talet du gissa");
 				}
 				else {
@@ -185,7 +191,7 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 2) {
-				if(TestIfNumber1IsAFactorOfNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+				if(TestIfNumber1IsAFactorOfNumber2(playerGuess, treasurePosition) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(playerGuess, treasurePosition) && i == falseClue) {
 					System.out.println("Det talet du gissa är en faktor av talet du letar efter");
 				}
 				else {
@@ -193,7 +199,7 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 3) {
-				if(TestIfNumber1CloseToNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1CloseToNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+				if(TestIfNumber1CloseToNumber2(playerGuess, treasurePosition) && i != falseClue || !TestIfNumber1CloseToNumber2(playerGuess, treasurePosition) && i == falseClue) {
 					System.out.println("Talet du letar efter är nära din gissning");
 				}
 				else {
@@ -201,7 +207,7 @@ public class TalSpelet {
 				}
 			}
 			else if(selectClue == 4) {
-				if(TestIfNumber1IsGreaterThanNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1IsGreaterThanNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+				if(TestIfNumber1IsGreaterThanNumber2(playerGuess, treasurePosition) && i != falseClue || !TestIfNumber1IsGreaterThanNumber2(playerGuess, treasurePosition) && i == falseClue) {
 					System.out.println("Din gissning är större än talet du letar efter");
 				}
 				else {
@@ -243,6 +249,11 @@ public class TalSpelet {
 		}
 	}
 
+	/**
+	 * Outputs the player's guess
+	 * @param difficultyInt is the difficulty level
+	 * @return the players guess
+	 */
 	public static int PlayerGuessing(int difficultyInt) {
 		Scanner input = new Scanner(System.in);
 		while(true) {
@@ -289,7 +300,7 @@ public class TalSpelet {
 	}
 	
 	/**
-	 * This method returns true if number1 is a factor of number2 and false if not.
+	 * returns true if number1 is a factor of number2 and false if not.
 	 * @param number1 is the first input integer you want to test
 	 * @param number2 is the second input integer you want to test
 	 * @return true if number1 is a factor of number2
@@ -303,6 +314,12 @@ public class TalSpelet {
 		}
 	}
 
+	/**
+	 * returns true if -10 < (number1 - number2) < 10
+	 * @param number1 is the first input integer you want to test
+	 * @param number2 is the second input integer you want to test
+	 * @return true if different of the numbers are 9 or less.
+	 */
 	public static boolean TestIfNumber1CloseToNumber2(int number1, int number2) {
 		if(Math.abs(number1 - number2) < 10) {
 			return true;
@@ -310,6 +327,12 @@ public class TalSpelet {
 		return false;
 	}
 
+	/**
+	 * return true if number1 is bigger. false if number2 is bigger of if number1 = number2
+	 * @param number1 is the first input integer you want to test
+	 * @param number2 is the second input integer you want to test
+	 * @return true if number1 is bigger. false if number2 is bigger of if number1 = number2
+	 */
 	public static boolean TestIfNumber1IsGreaterThanNumber2(int number1, int number2) {
 		if(number1 > number2) {
 			return true;
@@ -317,6 +340,12 @@ public class TalSpelet {
 		return false;
 	}
 
+	/**
+	 * return true if any of the digits are the same
+	 * @param number1 is the first input integer you want to test
+	 * @param number2 is the second input integer you want to test
+	 * @return true if any of the digits are the same
+	 */
 	public static boolean TestIfNumber1HasACommonDigitWithNumber2(int number1, int number2) {
 		while(number1 != 0 && number2 != 0) {
 			if(number1 % 10 == number2 % 10) {
@@ -329,6 +358,11 @@ public class TalSpelet {
 		return false;
 	}
 
+	/**
+	 * Test if a number is a prime
+	 * @param number is the number you want to test
+	 * @return true if the number is a prime number
+	 */
 	public static boolean TestIfNumberIsPrime(int number) {
 		for (int i = 2; i <= Math.ceil(Math.sqrt(number)); i++) {
 			if(TestIfNumber1IsAFactorOfNumber2(i, number)) {
@@ -338,13 +372,23 @@ public class TalSpelet {
 		return true;
 	}
 	
+	/**
+	 * Test if number is a square number
+	 * @param number is the number you want to test
+	 * @return true if the number is a square
+	 */
 	public static boolean TestIfNumberIsASquareNumber(int number) {
-		if(number == Math.pow(Math.sqrt(number), 2)) {
+		if(number == Math.pow((int)Math.sqrt(number), 2)) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Test if number is even
+	 * @param number is the number you want to test
+	 * @return true if the number is even
+	 */
 	public static boolean TestIfNumberIsEven(int number) {
 		if(TestIfNumber1IsAFactorOfNumber2(2, number)) {
 			return true;
