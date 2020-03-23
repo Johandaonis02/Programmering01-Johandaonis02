@@ -96,8 +96,7 @@ public class TalSpelet {
 		
 		while(playerHasLost == false && playerHasWon == false){
 			RandomClues(difficultyInt, playerGuess, treasurerPosition);
-			System.out.println(numberOfGuesses);
-			System.out.println(treasurerPosition);
+			System.out.println("Du har " + numberOfGuesses + " antal gissningar kvar");
 			playerGuess = PlayerGuessing(difficultyInt);
 			numberOfGuesses--;
 			if(numberOfGuesses == 0) {
@@ -132,6 +131,7 @@ public class TalSpelet {
 			
 			int selectClue = -1;
 			
+			//This is made so that different difficulties to get different clues. Easy gets clue 3, 4, 6, 8 and so on.
 			if(difficultyInt == 0) {
 				while(selectClue != 3 && selectClue != 4 && selectClue != 6 && selectClue != 8) {
 					selectClue = (int)(Math.random() * 8 + 1);
@@ -154,25 +154,61 @@ public class TalSpelet {
 			}
 			
 			if(selectClue == 1) {
-				if(TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && i != falseClue || !TestIfAIsAFactorOfB(treasurerPosition, playerGuess) && i == falseClue) {
+				if(TestIfNumber1IsAFactorOfNumber2(treasurerPosition, playerGuess) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(treasurerPosition, playerGuess) && i == falseClue) {
 					System.out.println("Talet du letar efter är en faktor av talet du gissa");
 				}
 				else {
 					System.out.println("Talet du letar efter är INTE en faktor av talet du gissa");
 				}
 			}
-			else{
-				System.out.println("Jag är inte klar");
+			else if(selectClue == 2) {
+				if(TestIfNumber1IsAFactorOfNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1IsAFactorOfNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+					System.out.println("Det talet du gissa är en faktor av talet du letar efter");
+				}
+				else {
+					System.out.println("Det talet du gissa är INTE en faktor av talet du letar efter");
+				}
 			}
-		}
-	}
-	
-	public static boolean TestIfAIsAFactorOfB(int a, int b) {
-		if(((int)(b/a)) * a == b) {
-			return true;
-		}
-		else {
-			return false;
+			else if(selectClue == 3) {
+				if(TestIfNumber1CloseToNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1CloseToNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+					System.out.println("Talet du letar efter är nära din gissning");
+				}
+				else {
+					System.out.println("Talet du letar efter är INTE nära din gissning");
+				}
+			}
+			else if(selectClue == 4) {
+				if(TestIfNumber1IsGreaterThanNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1IsGreaterThanNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+					System.out.println("Din gissning är större än talet du letar efter");
+				}
+				else {
+					System.out.println("Din gissning är mindre än talet du letar efter");
+				}
+			}
+			else if(selectClue == 5) {
+				if(TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+					System.out.println("Din gissning och talet du letar efter har en gemensam siffra");
+				}
+				else {
+					System.out.println("Din gissning och talet du letar efter har INTE en gemensam siffra");
+				}
+			}
+			else if(selectClue == 6) {
+				if(TestIfNumberIsPrime(treasurerPosition) && i != falseClue || !TestIfNumberIsPrime(treasurerPosition) && i == falseClue) {
+					System.out.println("Talet du letar efter är ett primtal");
+				}
+				else {
+					System.out.println("Talet du letar efter är INTE ett primtal");
+				}
+			}
+			else if(selectClue == 7) {
+				if(TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i != falseClue || !TestIfNumber1HasACommonDigitWithNumber2(playerGuess, treasurerPosition) && i == falseClue) {
+					System.out.println("Din gissning och talet du letar efter har en gemensam siffra");
+				}
+				else {
+					System.out.println("Din gissning och talet du letar efter har INTE en gemensam siffra");
+				}
+			}
 		}
 	}
 
@@ -219,5 +255,55 @@ public class TalSpelet {
 				System.out.println("Din gissning måste vara ett heltal. Du kan inte skriva " + input.nextLine());
 			}
 		}
+	}
+	
+	/**
+	 * This method returns true if number1 is a factor of number2 and false if not.
+	 * @param number1 is the first input integer you want to test
+	 * @param number2 is the second input integer you want to test
+	 * @return true if number1 is a factor of number2
+	 */
+	public static boolean TestIfNumber1IsAFactorOfNumber2(int number1, int number2) {
+		if(((int)(number2/number1)) * number1 == number2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public static boolean TestIfNumber1CloseToNumber2(int number1, int number2) {
+		if(Math.abs(number1 - number2) < 10) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean TestIfNumber1IsGreaterThanNumber2(int number1, int number2) {
+		if(number1 > number2) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean TestIfNumber1HasACommonDigitWithNumber2(int number1, int number2) {
+		while(number1 != 0 && number2 != 0) {
+			if(number1 % 10 == number2 % 10) {
+				return true;
+			}
+			//number1 / 10 is the same thing as Math.floor(number1 / 10) because number1 is an integer
+			number1 = number1 / 10;
+			number2 = number2 / 10;
+		}
+		return false;
+	}
+
+	public static boolean TestIfNumberIsPrime(int number) {
+		for (int i = 2; i <= Math.ceil(Math.sqrt(number)); i++) {
+			if(TestIfNumber1IsAFactorOfNumber2(i, number)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
