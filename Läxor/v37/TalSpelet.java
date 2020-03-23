@@ -2,121 +2,133 @@ import java.util.Scanner;
 
 public class TalSpelet {
 	public static void main(String[] args) {
-		//difficultyInt 0 = lätt, 1 = mellan, 2 = svår and 3 = omöjlig. 
+		//difficultyInt 0 = lätt, 1 = medel, 2 = svårt and 3 = omöjligt. 
 		int difficultyInt;
 		int numberOfGuesses;
 		int treasurePosition;
-		boolean playerHasLost = false;
-		boolean playerHasWon = false;
+		
 		Scanner input = new Scanner(System.in);
 		
-		//Text about the game.
-		System.out.println("Du är en utforskare som försöker hitta en dyrbar skatt. Till din hjälp har du ett visst antal upptäcktsresande som kommer säga allt de hittar till dig om vad skattens koordinater är.");
-		System.out.println("Med denna informationen kommer det vara ditt jobb att hitta skatten. Frågan är nu vilken skatt du vill försöka hitta.");	
-		System.out.println();
-		System.out.println("Om du vill vara med på din kunsin Kalle Perssons skattjakt skriver du lätt");
-		System.out.println("Om du vill hitta de fantastiska juvelerna från Atlantis skriver du mellan");
-		System.out.println("Om du vill hitta Harald Blåtands rikedomar skriver du svår");
-		System.out.println("Om du vill hitta Mansa Moussa 2 ton 24 karat guld skriver du omöjlig");
-		
-		//Player selecting difficulty.
-		while(true) {	
-			String difficultyString = input.nextLine();
+		//The while loop is there to restart the same if needed
+		while(playerIsPlaying) {
+			boolean playerIsPlaying = true;
+			boolean playerHasLost = false;
+			boolean playerHasWon = false;
 			
-			if (difficultyString.toUpperCase().equals("LÄTT")) {
-				System.out.println("På skattjakten får du tre ledar per gissning.");
-				difficultyInt = 0;
-				numberOfGuesses = 5;
-				treasurePosition = (int)(Math.random() * 16);
-				break;
+			//Text about the game.
+			System.out.println("Du är en utforskare som försöker hitta en dyrbar skatt. Till din hjälp har du ett visst antal upptäcktsresande som kommer rapportera allt de hittar till dig, samt ge ledtrådar kring skattens koordinater.");
+			System.out.println("Med denna information kommer det vara ditt jobb att hitta skatten. Frågan är nu vilken skatt du vill försöka hitta.");	
+			System.out.println();
+			System.out.println("Om du vill vara med på din kunsin Kalle Perssons skattjakt skriver du Lätt");
+			System.out.println("Om du vill hitta de fantastiska juvelerna från Atlantis skriver du Medel");
+			System.out.println("Om du vill hitta Harald Blåtands rikedomar skriver du Svårt");
+			System.out.println("Om du vill hitta Mansa Moussa 2 ton 24 karat guld skriver du Omöjligt");
+			
+			//Player selecting difficulty.
+			while(true) {	
+				String difficultyString = input.nextLine();
+				
+				if (difficultyString.toUpperCase().equals("LÄTT")) {
+					System.out.println("På skattjakten får du tre ledar per gissning.");
+					difficultyInt = 0;
+					numberOfGuesses = 5;
+					treasurePosition = (int)(Math.random() * 16);
+					break;
+				}
+				else if (difficultyString.toUpperCase().equals("MEDEL")) {
+					System.out.println("I jakten på juvelerna från Atlantis får du en ledtråd per gissning.");
+					difficultyInt = 1;
+					numberOfGuesses = 7;
+					treasurePosition = (int)(Math.random() * 51);
+					break;
+				}
+				else if (difficultyString.toUpperCase().equals("SVÅRT")) {
+					System.out.println("Harald Blåtand var en listig människa och ville missleda de som letade efter hans rikedomar. Därför får du en fel och två rätta ledtrådar varje gång du gissar.");
+					difficultyInt = 2;
+					numberOfGuesses = 10;
+					treasurePosition = (int)(Math.random() * 201);
+					break;
+				}
+				else if (difficultyString.toUpperCase().equals("OMÖJLIGT")) {
+					System.out.println("Mansa Moussa var en försiktig man. För varje gissning du gör får du två rätta och en fel ledtråd.");
+					difficultyInt = 3;
+					numberOfGuesses = 10;
+					treasurePosition = (int)(Math.random() * 1001);
+					break;
+				}
+				else {
+					System.out.println(difficultyString + " är inte giltig. Skriv lätt, medel, svårt eller omöjligt.");
+				}
 			}
-			else if (difficultyString.toUpperCase().equals("MELLAN")) {
-				System.out.println("I jakten på juvelerna från Atlantis får du en ledtråd per gissning.");
-				difficultyInt = 1;
-				numberOfGuesses = 7;
-				treasurePosition = (int)(Math.random() * 51);
-				break;
+			
+			//Text about where the treasure is located.
+			System.out.print("Skatten ligger mellan talen ");
+			if (difficultyInt == 0) {
+				System.out.println("1 och 15");
+				System.out.println();
+				System.out.print("Din första steget för att hitta ");
+				System.out.print("din kusins skatt ");
+				System.out.print("är att skriva en vild gissning mellan talen ");
+				System.out.println("1 och 15");
 			}
-			else if (difficultyString.toUpperCase().equals("SVÅR")) {
-				System.out.println("Harald Blåtand var en listig människa och ville missleda de som letade efter hans rikedomar. Därför får du en fel och två rätta ledtrådar varje gång du gissar.");
-				difficultyInt = 2;
-				numberOfGuesses = 10;
-				treasurePosition = (int)(Math.random() * 201);
-				break;
+			else if (difficultyInt == 1) {
+				System.out.println("1 och 50");
+				System.out.print("Din första steget för att hitta ");
+				System.out.print("juvelerna från Atlantis ");
+				System.out.print("är att skriva en vild gissning mellan talen ");
+				System.out.println("1 och 50");
 			}
-			else if (difficultyString.toUpperCase().equals("OMÖJLIG")) {
-				System.out.println("Mansa Moussa var en försiktig man. För varje gissning du gör får du två rätta och en fel ledtråd.");
-				difficultyInt = 3;
-				numberOfGuesses = 10;
-				treasurePosition = (int)(Math.random() * 1001);
-				break;
+			else if (difficultyInt == 2) {
+				System.out.println("1 och 200");
+				System.out.println();
+				System.out.print("Din första steget för att hitta ");
+				System.out.print("Harald Blåtands rikedomar ");
+				System.out.print("är att skriva en vild gissning mellan talen ");
+				System.out.println("1 och 200");
 			}
 			else {
-				System.out.println(difficultyString + " är inte giltig. Skriv lätt, mellan, svår eller omöjlig.");
+				System.out.println("1 och 1000");
+				System.out.println();
+				System.out.print("Din första steget för att hitta ");
+				System.out.println("Moussas guld ");
+				System.out.print("är att skriva en vild gissning mellan talen ");
+				System.out.println("1 och 1000");
 			}
-		}
-		
-		//Text about where the treasure is located.
-		System.out.print("Skatten ligger mellan talen ");
-		if (difficultyInt == 0) {
-			System.out.println("1 och 15");
-			System.out.println();
-			System.out.print("Din första steget för att hitta ");
-			System.out.print("din kusins skatt ");
-			System.out.print("är att skriva en vild gissning mellan talen ");
-			System.out.println("1 och 15");
-		}
-		else if (difficultyInt == 1) {
-			System.out.println("1 och 50");
-			System.out.print("Din första steget för att hitta ");
-			System.out.print("juvelerna från Atlantis ");
-			System.out.print("är att skriva en vild gissning mellan talen ");
-			System.out.println("1 och 50");
-		}
-		else if (difficultyInt == 2) {
-			System.out.println("1 och 200");
-			System.out.println();
-			System.out.print("Din första steget för att hitta ");
-			System.out.print("Harald Blåtands rikedomar ");
-			System.out.print("är att skriva en vild gissning mellan talen ");
-			System.out.println("1 och 200");
-		}
-		else {
-			System.out.println("1 och 1000");
-			System.out.println();
-			System.out.print("Din första steget för att hitta ");
-			System.out.println("Moussas guld ");
-			System.out.print("är att skriva en vild gissning mellan talen ");
-			System.out.println("1 och 1000");
-		}
-		
-		//Player selecting first guess.
-		int playerGuess = PlayerGuessing(difficultyInt);
-		numberOfGuesses--;
-		
-		while(playerHasLost == false && playerHasWon == false){
-			System.out.println("Ledtrådar:");
-			RandomClues(difficultyInt, playerGuess, treasurePosition);
 			
-			System.out.println();
-			System.out.println("Du har " + numberOfGuesses + " antal gissningar kvar");
-			playerGuess = PlayerGuessing(difficultyInt);
-			
+			//Player selecting first guess.
+			int playerGuess = PlayerGuessing(difficultyInt);
 			numberOfGuesses--;
-			if(numberOfGuesses == 0) {
-				playerHasLost = true;
+			
+			//Here is most of the gameplay. The player gets a hind, they guess and the code test if they got it or not.
+			while(playerHasLost == false && playerHasWon == false){
+				System.out.println("Ledtrådar:");
+				RandomClues(difficultyInt, playerGuess, treasurePosition);
+				
+				System.out.println();
+				System.out.println("Du har " + numberOfGuesses + " antal gissningar kvar");
+				playerGuess = PlayerGuessing(difficultyInt);
+				
+				numberOfGuesses--;
+				if(numberOfGuesses == 0) {
+					playerHasLost = true;
+				}
+				if(playerGuess == treasurePosition) {
+					playerHasLost = false;
+					playerHasWon = true;
+				}
 			}
-			if(playerGuess == treasurePosition) {
-				playerHasLost = false;
-				playerHasWon = true;
+			
+			//Winning / loosing text
+			if(playerHasWon) {
+				System.out.println("Du vann! Du klarade spelet med " + numberOfGuesses + " gissningar kvar! Om du vill köra om spelet skriver du omstart" );
 			}
-		}
-		
-		if(playerHasWon) {
-			System.out.println("Du vann! Du klarade spelet med " + numberOfGuesses + " gissningar kvar! Om du vill köra om spelet skriver du omstart" );
-		}
-		else {
-			System.out.println("Du förlorade! Talet var " + treasurePosition + " Om du vill köra om spelet skriver du omstart");
+			else {
+				System.out.println("Du förlorade! Talet var " + treasurePosition + " Om du vill köra om spelet skriver du omstart");
+			}
+
+			if(!input.nextLine().toUpperCase().equals("OMSTART")) {
+				playerIsPlaying = false;
+			}
 		}
 	}
 		
