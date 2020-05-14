@@ -25,4 +25,28 @@ public class HangaGubben {
 	public static int RemoveOneGuess(int numberOfGuessesLeft) {
 		return numberOfGuessesLeft--;
 	}
+	
+	public static int AskPlayerDifficulty() {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Vilken svårighetsgrad vill du ha? (Lätt, mellan eller svår)");
+		while (true) {
+			String dummyString = input.nextLine();
+			
+			if(dummyString.toUpperCase().equals("LÄTT")) {
+				return 0;
+			}
+			if(dummyString.toUpperCase().equals("MELLAN")) {
+				return 1;
+			}
+			if(dummyString.toUpperCase().equals("SVÅR")) {
+				return 2;
+			}
+			System.out.println("Du måste skriva lätt, mellan eller svår");
+		}
+	}
+	
+	public static void Welcome() {
+		System.out.println("Detta spelet är hänga gubben. Du får ett svenskt ord och du ska gissa bokstav efter bokstav. Om du gissar rätt så visar bokstaven sig medans om du gissar fel så kommer du ett steg närmre att förlora.");
+	}
 }
