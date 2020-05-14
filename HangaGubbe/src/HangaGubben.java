@@ -9,6 +9,9 @@ public class HangaGubben {
 	static ArrayList<Character> guessedLetters = new ArrayList<Character>();
 
 	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		char guessedLetter;
+		
 		Welcome();
 		
 		int difficulty = AskPlayerDifficulty();
@@ -25,7 +28,27 @@ public class HangaGubben {
 		}
 		
 		for (int numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 ; numberOfGuessesLeft--) {
+			AskPlayerToPickLetter(numberOfGuessesLeft, difficulty);
+			while(true) {
+				String dummyString = input.nextLine();
+				if(dummyString.length() == 1) {
+					guessedLetter = dummyString.charAt(0);
+					if(!Character.isDigit(guessedLetter)) {
+						break;
+					}
+					else {
+						System.out.println("Du måste välja en bokstav");
+					}
+				}
+				else {
+					System.out.println("Du behöver skriva enbart en bokstav.");
+				}
+				
+			}
 			
+			if(TestIfLetterBeenGuessedBefore(guessedLetter)) {
+				numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
+			}
 		}
 	}
 	
