@@ -29,6 +29,12 @@ public class HangaGubben {
 		}
 	}
 	
+	
+	
+	public static void AddToPartWord(char guessedLetter) {
+		guessedLetters.add(guessedLetter);
+	}
+	
 	public static void AskPlayerToPickLetter(int numberOfGuessesLeft, int difficulty) {
 		if(numberOfGuessesLeft == 5 - difficulty) {
 			System.out.println("Skriv en bokstav");
