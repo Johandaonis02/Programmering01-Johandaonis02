@@ -29,9 +29,15 @@ public class HangaGubben {
 		}
 	}
 	
-	
-	
 	public static void AddToPartWord(char guessedLetter) {
+		for (int i = 0; i < fullWord.length; i++) {
+			if(fullWord[i] == guessedLetter) {
+				partWord[i] = guessedLetter;
+			}
+		}
+	}
+	
+	public static void AddToGuessedLetter(char guessedLetter) {
 		guessedLetters.add(guessedLetter);
 	}
 	
