@@ -49,4 +49,73 @@ public class HangaGubben {
 	public static void Welcome() {
 		System.out.println("Detta spelet är hänga gubben. Du får ett svenskt ord och du ska gissa bokstav efter bokstav. Om du gissar rätt så visar bokstaven sig medans om du gissar fel så kommer du ett steg närmre att förlora.");
 	}
+	
+	public static boolean TestIfPlayerWantRestart(int numberOfGuessesLeft) {
+        Scanner input = new Scanner(System.in);
+        
+        if(numberOfGuessesLeft == 0) {
+            System.out.println("Du förlorade");
+        }
+        else {
+            System.out.println("Du vann!");
+        }
+        System.out.println("vill du köra igen?");
+        
+        String dummyString = input.nextLine();
+        if(dummyString.toUpperCase() == "YES") {
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean TestIfLetterBeenGuessedBefore(char guessedLetter) {
+        for (int i = 0; i < fullWord.length; i++) {
+            if(fullWord[i] == guessedLetter) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+	public static void AsciiAndWordDisplay(int numberOfGuessesLeft) {
+        System.out.println(" +---+");
+        System.out.println(" |   |");
+
+        //Denna while loop har jag för att man ska kunna hoppa ur när man har hittat rätt tal så man inte behöver testa mer än nödvändigt.
+        while(true) {
+            if(numberOfGuessesLeft == 5) {
+                System.out.println("     |");
+                System.out.println("     |");
+                System.out.println("     |");
+                System.out.println("     |");
+                break;
+            }
+
+            System.out.println(" O   |");
+            if(numberOfGuessesLeft == 4) {
+                System.out.println(" |   |");
+            }
+            else if(numberOfGuessesLeft == 3) {
+                System.out.println("V|   |");
+            }
+            if(numberOfGuessesLeft == 3 || numberOfGuessesLeft == 4) {
+                System.out.println("     |");
+                System.out.println("     |");
+                break;
+            }
+
+            System.out.println("V|V  |");
+            if(numberOfGuessesLeft == 2) {
+                System.out.println("     |");
+            }
+            else if(numberOfGuessesLeft == 1) {
+                System.out.println("I    |");
+            }
+            else if(numberOfGuessesLeft == 0) {
+                System.out.println("I I  |");
+            }
+            System.out.println("     |");
+            break;
+        }
+    }
 }
