@@ -28,13 +28,27 @@ public class HangaGubben {
 		}
 		
 		for (int numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 ; numberOfGuessesLeft--) {
+			
 			AskPlayerToPickLetter(numberOfGuessesLeft, difficulty);
+			
 			while(true) {
-				String dummyString = input.nextLine();
+				System.out.println( guessedLetters.size());
+				String dummyString = input.nextLine();	
+				
 				if(dummyString.length() == 1) {
 					guessedLetter = dummyString.charAt(0);
 					if(!Character.isDigit(guessedLetter)) {
-						break;
+						for (int i = 0; i < guessedLetters.size(); i++) {
+							if(guessedLetters.get(i) == dummyString.charAt(0)) {
+								System.out.println("Du har redan valt denna bokstav");
+								guessedLetter = '1'; //Jag kan inte breaka från while loopen här så jag sätter guessedLetter till 1 för att veta att bokstaven har skrivits innan.
+								break;
+							}
+						}
+						if(guessedLetters.size() == 0 || guessedLetter != '1') {
+							guessedLetters.add(guessedLetter);
+							break;
+						}
 					}
 					else {
 						System.out.println("Du måste välja en bokstav");
@@ -42,12 +56,16 @@ public class HangaGubben {
 				}
 				else {
 					System.out.println("Du behöver skriva enbart en bokstav.");
-				}
-				
+				}	
 			}
 			
 			if(TestIfLetterBeenGuessedBefore(guessedLetter)) {
 				numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
+				System.out.println(guessedLetter + " finns inte med i ordet.");
+			}
+			else {
+				AddToPartWord(guessedLetter);
+				System.out.println(guessedLetter + " finns i ordet");
 			}
 		}
 	}
@@ -69,7 +87,7 @@ public class HangaGubben {
 			System.out.println("Skriv en bokstav");
 		}
 		else {
-			System.out.println("Skriv enbokstav som du inte skrivit innan");
+			System.out.println("Skriv en bokstav som du inte skrivit innan");
 		}
 	}
 	
@@ -120,11 +138,11 @@ public class HangaGubben {
     }
     
     public static boolean TestIfLetterBeenGuessedBefore(char guessedLetter) {
-        for (int i = 0; i < fullWord.length; i++) {
-            if(guessedLetters.get(i) == guessedLetter) {
+        for (int i = 0; i < guessedLetters.size(); i++) {
+        	if(guessedLetters.get(i) == guessedLetter) {
             	return true;
             }
-        }
+		}
         return false;
     }
 	
