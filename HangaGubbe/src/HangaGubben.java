@@ -1,16 +1,19 @@
-import java.util.Iterator;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class HangaGubben {
 	
 	static String[] words = {"KAN", "FYR", "EK", "AFTON", "LJUD", "BIBLIOTEK", "ORANGE", "ULL", "INNAN"};
 	static char[] fullWord;
 	static char[] partWord;
-	
+	static ArrayList<Character> guessedLetters = new ArrayList<Character>();
+
 	public static void main(String[] args) {
 		Welcome();
 		
 		int difficulty = AskPlayerDifficulty();
+		
+		int numberOfGuessesStart = 3 + (2 - difficulty);
 		
 		String dummyWord = words[(int)(3*(Math.random() + difficulty))];
 		fullWord = new char[dummyWord.length()];
@@ -21,9 +24,11 @@ public class HangaGubben {
 			partWord[i] = '_';
 		}
 		
-		System.out.println(fullWord[1]);
-		
+		for (int numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 ; numberOfGuessesLeft--) {
+			
+		}
 	}
+	
 	
 	public static int RemoveOneGuess(int numberOfGuessesLeft) {
 		return numberOfGuessesLeft--;
@@ -73,8 +78,8 @@ public class HangaGubben {
     
     public static boolean TestIfLetterBeenGuessedBefore(char guessedLetter) {
         for (int i = 0; i < fullWord.length; i++) {
-            if(fullWord[i] == guessedLetter) {
-                return true;
+            if(guessedLetters.get(i) == guessedLetter) {
+            	return true;
             }
         }
         return false;
