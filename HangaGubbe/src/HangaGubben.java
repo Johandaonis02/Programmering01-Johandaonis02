@@ -13,7 +13,7 @@ public class HangaGubben {
 		
 		int difficulty = AskPlayerDifficulty();
 		
-		int numberOfGuessesStart = 3 + (2 - difficulty);
+		int numberOfGuessesStart = 5 - difficulty;
 		
 		String dummyWord = words[(int)(3*(Math.random() + difficulty))];
 		fullWord = new char[dummyWord.length()];
@@ -29,6 +29,14 @@ public class HangaGubben {
 		}
 	}
 	
+	public static void AskPlayerToPickLetter(int numberOfGuessesLeft, int difficulty) {
+		if(numberOfGuessesLeft == 5 - difficulty) {
+			System.out.println("Skriv en bokstav");
+		}
+		else {
+			System.out.println("Skriv enbokstav som du inte skrivit innan");
+		}
+	}
 	
 	public static int RemoveOneGuess(int numberOfGuessesLeft) {
 		return numberOfGuessesLeft--;
