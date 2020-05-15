@@ -9,69 +9,79 @@ public class HangaGubben {
 	static ArrayList<Character> guessedLetters = new ArrayList<Character>();
 
 	public static void main(String[] args) {
+
 		Scanner input = new Scanner(System.in);
 		char guessedLetter;
 		int numberOfGuessesLeft;
+		boolean isPlaying = true;
 		
-		Welcome();
-		
-		int difficulty = AskPlayerDifficulty();
-		
-		int numberOfGuessesStart = 5 - difficulty;
-		
-		String dummyWord = words[(int)(3*(Math.random() + difficulty))];
-		fullWord = new char[dummyWord.length()];
-		partWord = new char[dummyWord.length()];
-		
-		for (int i = 0; i < fullWord.length; i++) {
-			fullWord[i] = dummyWord.charAt(i);
-			partWord[i] = '*';
-		}
-		
-		for (numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 && !TestIfPartWordEqualsFullWord(); ) {
-			AsciiAndWordDisplay(numberOfGuessesLeft);
+		while(isPlaying) {
+			Welcome();
 			
-			for (int i = 0; i < partWord.length; i++) {
-				System.out.print(partWord[i]);
+			int difficulty = AskPlayerDifficulty();
+			
+			int numberOfGuessesStart = 5 - difficulty;
+			
+			String dummyWord = words[(int)(3*(Math.random() + difficulty))];
+			fullWord = new char[dummyWord.length()];
+			partWord = new char[dummyWord.length()];
+			
+			for (int i = 0; i < fullWord.length; i++) {
+				fullWord[i] = dummyWord.charAt(i);
+				partWord[i] = '*';
 			}
-			System.out.println();
 			
-			AskPlayerToPickLetter(numberOfGuessesLeft, difficulty);
-			
-			while(true) {
-				String dummyString = input.nextLine();	
+			for (numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 && !TestIfPartWordEqualsFullWord(); numberOfGuessesLeft = numberOfGuessesLeft) {
+				AsciiAndWordDisplay(numberOfGuessesLeft);
 				
-				if(dummyString.length() == 1) {
-					guessedLetter = dummyString.charAt(0);
-					if(!Character.isDigit(guessedLetter)) {
-						if(TestIfLetterBeenGuessedBefore(guessedLetter)) {
-							System.out.println("Du har redan valt denna bokstav");
+				for (int i = 0; i < partWord.length; i++) {
+					System.out.print(partWord[i]);
+				}
+				System.out.println();
+				
+				AskPlayerToPickLetter(numberOfGuessesLeft, difficulty);
+				
+				while(true) {
+					String dummyString = input.nextLine().toUpperCase();	
+					
+					if(dummyString.length() == 1) {
+						guessedLetter = dummyString.charAt(0);
+						if(!Character.isDigit(guessedLetter)) {
+							if(TestIfLetterBeenGuessedBefore(guessedLetter)) {
+								System.out.println("Du har redan valt denna bokstav");
+							}
+							else {
+								guessedLetters.add(guessedLetter);
+								break;
+							}
 						}
 						else {
-							guessedLetters.add(guessedLetter);
-							break;
+							System.out.println("Du måste välja en bokstav");
 						}
 					}
 					else {
-						System.out.println("Du måste välja en bokstav");
-					}
+						System.out.println("Du behöver skriva enbart en bokstav.");
+					}	
+				}
+	
+				
+				if(TestIfLetterInFullWord(guessedLetter)) {
+					AddToPartWord(guessedLetter);
+					System.out.println(guessedLetter + " finns med i ordet.");
 				}
 				else {
-					System.out.println("Du behöver skriva enbart en bokstav.");
-				}	
+					numberOfGuessesLeft--;
+					//numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
+					System.out.println(guessedLetter + " finns inte med i ordet");
+				}
 			}
 			
-			if(TestIfLetterInFullWord(guessedLetter)) {
-				AddToPartWord(guessedLetter);
-				System.out.println(guessedLetter + " finns med i ordet.");
-			}
-			else {
-				numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
-				System.out.println(guessedLetter + " finns inte med i ordet");
+			isPlaying = TestIfPlayerWantRestart(numberOfGuessesLeft);
+			
+			for (int i = guessedLetters.size() - 1; i >= 0; i--) {
+				guessedLetters.remove(i);
 			}
 		}
-		
-		TestIfPlayerWantRestart(numberOfGuessesLeft);
 	}
 	
 	public static boolean TestIfLetterInFullWord(char guessedLetter) {
@@ -153,11 +163,17 @@ public class HangaGubben {
         }
         System.out.println("vill du köra igen?");
         
-        String dummyString = input.nextLine();
-        if(dummyString.toUpperCase() == "YES") {
-            return true;
+        while(true) {
+	        String dummyString = input.nextLine().toUpperCase();
+	       
+	        if(dummyString.equals("JA")) {
+	            return true;
+	        }
+	        else if(dummyString.equals("NEJ")) {
+	        	return false;
+	        }
+	        System.out.println("Du behöver skriva ja eller nej");
         }
-        return false;
     }
     
     public static boolean TestIfLetterBeenGuessedBefore(char guessedLetter) {
