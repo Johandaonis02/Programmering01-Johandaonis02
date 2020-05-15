@@ -70,7 +70,7 @@ public class HangaGubben {
 					System.out.println(guessedLetter + " finns med i ordet.");
 				}
 				else {
-					numberOfGuessesLeft--;
+					numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
 					//numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
 					System.out.println(guessedLetter + " finns inte med i ordet");
 				}
@@ -84,6 +84,11 @@ public class HangaGubben {
 		}
 	}
 	
+	/**
+	 * Testar om bokstaven spelaren gissade på (guessedLetter) finns i ordet (fullWord).
+	 * @param guessedLetter (bokstaven spelaren gissade på)
+	 * @return true om guessedLetter är i fullWord. False om inte. 
+	 */
 	public static boolean TestIfLetterInFullWord(char guessedLetter) {
 		
 		for (int i = 0; i < fullWord.length; i++) {
@@ -94,6 +99,10 @@ public class HangaGubben {
 		return false;
 	}
 	
+	/**
+	 * Testar om man har hittat alla bokstäver i ordet.
+	 * @return true om partWord = fullWord och false om partWord =/= fullWord
+	 */
 	public static boolean TestIfPartWordEqualsFullWord() {
 		for (int i = 0; i < fullWord.length; i++) {
 			if(fullWord[i] != partWord[i]) {
@@ -103,6 +112,10 @@ public class HangaGubben {
 		return true;
 	}
 	
+	/**
+	 * Lägger till bokstaven spelaren gissade på i ordet spelaren ser.
+	 * @param guessedLetter är bokstaven spelaren gissade på.
+	 */
 	public static void AddToPartWord(char guessedLetter) {
 		for (int i = 0; i < fullWord.length; i++) {
 			if(fullWord[i] == guessedLetter) {
@@ -111,10 +124,19 @@ public class HangaGubben {
 		}
 	}
 	
+	/**
+	 * Lägg till bokstaven spelare gissade på i listan av bokstäver spelaren har gissat på.
+	 * @param guessedLetter
+	 */
 	public static void AddToGuessedLetter(char guessedLetter) {
 		guessedLetters.add(guessedLetter);
 	}
 	
+	/**
+	 * Säger till spelaren att den ska gissa på en bokstav.
+	 * @param numberOfGuessesLeft är antalet gissningar kvar.
+	 * @param difficulty är svårigheten.
+	 */
 	public static void AskPlayerToPickLetter(int numberOfGuessesLeft, int difficulty) {
 		if(numberOfGuessesLeft == 5 - difficulty) {
 			System.out.println("Skriv en bokstav");
@@ -125,7 +147,7 @@ public class HangaGubben {
 	}
 	
 	public static int RemoveOneGuess(int numberOfGuessesLeft) {
-		return numberOfGuessesLeft--;
+		return numberOfGuessesLeft - 1;
 	}
 	
 	public static int AskPlayerDifficulty() {
