@@ -15,6 +15,7 @@ public class HangaGubben {
 		int numberOfGuessesLeft;
 		boolean isPlaying = true;
 		
+		//Denna while loopen körs till spelaren inte vill köra mer.
 		while(isPlaying) {
 			Welcome();
 			
@@ -31,6 +32,7 @@ public class HangaGubben {
 				partWord[i] = '*';
 			}
 			
+			//Denna for loopen körs om varje runda.
 			for (numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 && !TestIfPartWordEqualsFullWord(); numberOfGuessesLeft = numberOfGuessesLeft) {
 				AsciiAndWordDisplay(numberOfGuessesLeft);
 				
@@ -41,6 +43,7 @@ public class HangaGubben {
 				
 				AskPlayerToPickLetter(numberOfGuessesLeft, difficulty);
 				
+				//denna while loop har jag för att spelaren ska skriva en bokstav som är tillåten.
 				while(true) {
 					String dummyString = input.nextLine().toUpperCase();	
 					
@@ -146,10 +149,19 @@ public class HangaGubben {
 		}
 	}
 	
+	/**
+	 * Tar bort ett från numberOfGuessesLeft
+	 * @param numberOfGuessesLeft är antalet gissningar spelaren har kvar.
+	 * @return antalet gissningar spelaren ska ha.
+	 */
 	public static int RemoveOneGuess(int numberOfGuessesLeft) {
 		return numberOfGuessesLeft - 1;
 	}
 	
+	/**
+	 * Säger till spelaren att välja en svårighetsgrad.
+	 * @return svårighetsgraden i int form.
+	 */
 	public static int AskPlayerDifficulty() {
 		Scanner input = new Scanner(System.in);
 		
@@ -170,10 +182,18 @@ public class HangaGubben {
 		}
 	}
 	
+	/**
+	 * Välkomnar spelaren
+	 */
 	public static void Welcome() {
 		System.out.println("Detta spelet är hänga gubben. Du får ett svenskt ord och du ska gissa bokstav efter bokstav. Om du gissar rätt så visar bokstaven sig medans om du gissar fel så kommer du ett steg närmre att förlora.");
 	}
 	
+	/**
+	 * Testar om spelaren vill köra om spelet.
+	 * @param numberOfGuessesLeft är antalet gissningar kvar.
+	 * @return true om spelaren vill köra om spelet och false om inte.
+	 */
 	public static boolean TestIfPlayerWantRestart(int numberOfGuessesLeft) {
         Scanner input = new Scanner(System.in);
         
@@ -198,6 +218,11 @@ public class HangaGubben {
         }
     }
     
+	/**
+	 * Testar om bokstaven spelaren gissar har blivit gissad på innan.
+	 * @param guessedLetter är bokstaven spelaren gissade på.
+	 * @return true om bokstaven har blivit gissad på innan och false om inte.
+	 */
     public static boolean TestIfLetterBeenGuessedBefore(char guessedLetter) {
         for (int i = 0; i < guessedLetters.size(); i++) {
         	if(guessedLetters.get(i) == guessedLetter) {
@@ -207,6 +232,10 @@ public class HangaGubben {
         return false;
     }
 	
+    /**
+     * Skriver ut hänga gubben ascii displayen.
+     * @param numberOfGuessesLeft är antalet gissningar spelaren har kvar.
+     */
 	public static void AsciiAndWordDisplay(int numberOfGuessesLeft) {
         System.out.println(" +---+");
         System.out.println(" |   |");
