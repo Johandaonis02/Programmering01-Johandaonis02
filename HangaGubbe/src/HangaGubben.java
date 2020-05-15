@@ -2,8 +2,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class HangaGubben {
-	
-	static String[] words = {"KAN", "FYR", "EK", "AFTON", "LJUD", "BIBLIOTEK", "ORANGE", "ULL", "INNAN"};
+
+	//Ord 1-3: lätt, 4-6: mellan, 7-9: svår.
+	static String[] words = {"KAN", "FYR", "EK", "AFTON", "LJUD", "BIBLIOTEK", "ORANGE", "ULL", "INNAN"}; 
 	static char[] fullWord;
 	static char[] partWord;
 	static ArrayList<Character> guessedLetters = new ArrayList<Character>();
