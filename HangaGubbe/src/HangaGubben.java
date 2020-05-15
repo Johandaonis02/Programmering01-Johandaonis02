@@ -11,6 +11,7 @@ public class HangaGubben {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		char guessedLetter;
+		int numberOfGuessesLeft;
 		
 		Welcome();
 		
@@ -24,28 +25,29 @@ public class HangaGubben {
 		
 		for (int i = 0; i < fullWord.length; i++) {
 			fullWord[i] = dummyWord.charAt(i);
-			partWord[i] = '_';
+			partWord[i] = '*';
 		}
 		
-		for (int numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 ; numberOfGuessesLeft--) {
+		for (numberOfGuessesLeft = numberOfGuessesStart; numberOfGuessesLeft > 0 && !TestIfPartWordEqualsFullWord(); ) {
+			AsciiAndWordDisplay(numberOfGuessesLeft);
+			
+			for (int i = 0; i < partWord.length; i++) {
+				System.out.print(partWord[i]);
+			}
+			System.out.println();
 			
 			AskPlayerToPickLetter(numberOfGuessesLeft, difficulty);
 			
 			while(true) {
-				System.out.println( guessedLetters.size());
 				String dummyString = input.nextLine();	
 				
 				if(dummyString.length() == 1) {
 					guessedLetter = dummyString.charAt(0);
 					if(!Character.isDigit(guessedLetter)) {
-						for (int i = 0; i < guessedLetters.size(); i++) {
-							if(guessedLetters.get(i) == dummyString.charAt(0)) {
-								System.out.println("Du har redan valt denna bokstav");
-								guessedLetter = '1'; //Jag kan inte breaka från while loopen här så jag sätter guessedLetter till 1 för att veta att bokstaven har skrivits innan.
-								break;
-							}
+						if(TestIfLetterBeenGuessedBefore(guessedLetter)) {
+							System.out.println("Du har redan valt denna bokstav");
 						}
-						if(guessedLetters.size() == 0 || guessedLetter != '1') {
+						else {
 							guessedLetters.add(guessedLetter);
 							break;
 						}
@@ -59,15 +61,36 @@ public class HangaGubben {
 				}	
 			}
 			
-			if(TestIfLetterBeenGuessedBefore(guessedLetter)) {
-				numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
-				System.out.println(guessedLetter + " finns inte med i ordet.");
+			if(TestIfLetterInFullWord(guessedLetter)) {
+				AddToPartWord(guessedLetter);
+				System.out.println(guessedLetter + " finns med i ordet.");
 			}
 			else {
-				AddToPartWord(guessedLetter);
-				System.out.println(guessedLetter + " finns i ordet");
+				numberOfGuessesLeft = RemoveOneGuess(numberOfGuessesLeft);
+				System.out.println(guessedLetter + " finns inte med i ordet");
 			}
 		}
+		
+		TestIfPlayerWantRestart(numberOfGuessesLeft);
+	}
+	
+	public static boolean TestIfLetterInFullWord(char guessedLetter) {
+		
+		for (int i = 0; i < fullWord.length; i++) {
+			if(fullWord[i] == guessedLetter) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean TestIfPartWordEqualsFullWord() {
+		for (int i = 0; i < fullWord.length; i++) {
+			if(fullWord[i] != partWord[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public static void AddToPartWord(char guessedLetter) {
