@@ -41,7 +41,7 @@ class MyCanvas extends Canvas{
 						break;	
 					}
 					if(i == turns - 1) {
-						g.setColor(Color.BLACK));
+						g.setColor(Color.BLACK);
 						g.fillRect(x, y, 1, 1);
 					}
 				}

@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.JFrame;
 
-public class CanvasAWT extends JFrame {
+//public class CanvasAWT extends JFrame {
 	public CanvasAWT() {
 		JFrame f = new JFrame("Canvas Example");
 		f.add(new MyCanvas());
@@ -14,7 +14,6 @@ public class CanvasAWT extends JFrame {
 	public static void main(String[] args) {
 		new CanvasAWT();
 	}
-}
 
 class MyCanvas extends Canvas{
 	public MyCanvas() {

@@ -31,7 +31,7 @@ public class BrainFuck {
 				}
 				address--;
 				
-				//display(address, addressSpace);	
+				display(address, addressSpace);	
 			}
 			
 			else if(brainFuckInput.charAt(i) == '>') {
@@ -40,7 +40,7 @@ public class BrainFuck {
 				}
 				address++;
 				
-				//display(address, addressSpace);
+				display(address, addressSpace);
 			}
 			
 			else if (brainFuckInput.charAt(i) == '[') {
