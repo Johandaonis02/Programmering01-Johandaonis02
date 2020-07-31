@@ -52,7 +52,7 @@ public class Shapez {
 							shape2 = changeCharInPosition(2 * corner + 9 * layer2 + 1, shape1.charAt(2 * corner + 9 * layer1 + 1), shape2);
 						}
 					}
-					layer2 = 80085;
+					break;
 				}	
 			}
 		}
@@ -103,8 +103,6 @@ public class Shapez {
 				}
 			}
 		}
-		
-		
 		
 		return(stringIsOk);
 	}
