@@ -14,157 +14,156 @@ public class ShapezOldNew {
 	
 	public static void main(String[] args) {
 		
-		//.size()
-		//.get()
-		//.add()
-			
-		for (int i = 3; i < testIfShapeExist.length; i++) {
-			testIfShapeExist[i] = false;
-		}
+		System.out.println(stackerNew("1010:0101:1010:0101", "1010:0101:1010:0101"));
 		
-		testIfShapeExist[0] = true;
-		shapeOnePointOne[0] = true;
-		shapeOnePointTwo[0] = true;
-		testIfShapeExist[1] = true;
-		shapeOnePointOne[1] = true;
-		shapeOnePointTwo[1] = true;
-		testIfShapeExist[2] = true;
-		shapeOnePointOne[2] = true;
-		shapeOnePointTwo[2] = true;
-		testIfShapeExist[4] = true;
-		shapeOnePointOne[4] = true;
-		shapeOnePointTwo[4] = true;
-		testIfShapeExist[8] = true;
-		shapeOnePointOne[8] = true;
-		shapeOnePointTwo[8] = true;
-		
-		shape.add("0000:0000:0000:0000");
-		shape.add("1000:0000:0000:0000");
-		shape.add("0100:0000:0000:0000");
-		shape.add("0010:0000:0000:0000");
-		shape.add("0001:0000:0000:0000");
-		
-		shapeText.add("0000:0000:0000:0000 (0)"); 
-		shapeText.add("1000:0000:0000:0000 (1)");
-		shapeText.add("0100:0000:0000:0000 (2)");
-		shapeText.add("0010:0000:0000:0000 (3)");
-		shapeText.add("0001:0000:0000:0000 (4)");
-		
-		int shapeSizeNew = 1;
-		int shapeSizeOld = 0;
-		
-		
-		while(shapeSizeNew != shapeSizeOld) {
-			int shapeSizeOldOld = shapeSizeOld;
-			shapeSizeOld = shape.size() - 1;
-			
-			for (int i = 0; i <= shapeSizeOld; i++) {
-				for (int j = 0; j <= shapeSizeOld; j++) {
-					if((i >= shapeSizeOldOld)||(j >= shapeSizeOldOld)) {
-						
-						if(shapeOnePointTwo[getShapesNumber(shape.get(i))] == true && shapeOnePointTwo[getShapesNumber(shape.get(j))] == true && shapeOnePointOne[getShapesNumber(shape.get(i))] == true && shapeOnePointOne[getShapesNumber(shape.get(j))] == true) {
-							String temporaryString = stackerOld(shape.get(i),shape.get(j));
-							shapeOnePointOne[getShapesNumber(temporaryString)] = true;
-							
-							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
-								testIfShapeExist[getShapesNumber(temporaryString)] = true;
-								shape.add(temporaryString);
-								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
-								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
-							}
-							
-							temporaryString = stackerNew(shape.get(i),shape.get(j));
-							shapeOnePointTwo[getShapesNumber(temporaryString)] = true;
-							
-							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
-								testIfShapeExist[getShapesNumber(temporaryString)] = true;
-								shape.add(temporaryString);
-								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
-								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
-							}
-						}
-						else if(shapeOnePointTwo[getShapesNumber(shape.get(i))] == true && shapeOnePointTwo[getShapesNumber(shape.get(j))] == true) {
-							String temporaryString = stackerNew(shape.get(i),shape.get(j));
-							shapeOnePointTwo[getShapesNumber(temporaryString)] = true;
-							
-							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
-								testIfShapeExist[getShapesNumber(temporaryString)] = true;
-								shape.add(temporaryString);
-								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
-								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
-							}
-						}
-						else if(shapeOnePointOne[getShapesNumber(shape.get(i))] == true && shapeOnePointOne[getShapesNumber(shape.get(j))] == true) {
-							String temporaryString = stackerOld(shape.get(i),shape.get(j));
-							shapeOnePointOne[getShapesNumber(temporaryString)] = true;
-							
-							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
-								testIfShapeExist[getShapesNumber(temporaryString)] = true;
-								shape.add(temporaryString);
-								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
-								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
-							}
-						}
-						
-						
-					}
-				}
-			}
-			
-			for (int i = shapeSizeOldOld; i <= shapeSizeOld; i++) {
-				for (int j = 0; j <= 3; j++) {
-					String temporaryString = splitter(shape.get(i), j);
-					
-					if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
-						testIfShapeExist[getShapesNumber(temporaryString)] = true;
-						shape.add(temporaryString);
-						System.out.println(shape.size() + " " + temporaryString);
-						
-						
-						if(j == 0) {
-							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Left part of " + shape.get(i) + " (" + i + ")");
-						}
-						else if(j == 1) {
-							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Upper part of " + shape.get(i) + " (" + i + ")");
-						}
-						else if(j == 2) {
-							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Right part of " + shape.get(i) + " (" + i + ")");
-						}
-						else {
-							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Lower part of " + shape.get(i) + " (" + i + ")");
-						}
-						
-					}
-				}
-			}
-	
-			shapeSizeNew = shape.size() - 1;
-		}
-		
-		System.out.println("Its textfile time!");
-		
-		try {
-			File file = new File("ShapezShapes.txt");
-		      
-			if (!file.exists()) {
-				file.createNewFile();
-			}  
-			PrintWriter pw = new PrintWriter(file);
-			
-			pw.println("shapes:");
-			
-			for (int i = 0; i < shapeText.size(); i++) {
-				pw.println(shapeText.get(i));
-			}
-			
-			pw.close();	
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("Error");
-		}
-		
-		System.out.println("Done!");
+//		//.size()
+//		//.get()
+//		//.add()
+//			
+//		for (int i = 3; i < testIfShapeExist.length; i++) {
+//			testIfShapeExist[i] = false;
+//			//shapeOnePointOne[0] = false;
+//			shapeOnePointTwo[0] = false;
+//		}
+//		
+//		testIfShapeExist[0] = true;
+//		//shapeOnePointOne[0] = true;
+//		shapeOnePointTwo[0] = true;
+//		
+//		for (int i = 1; i <= 8; ) {
+//			testIfShapeExist[i] = true;
+//			//shapeOnePointOne[i] = true;
+//			shapeOnePointTwo[i] = true;
+//			i *= 2;
+//		}
+//		
+//		shape.add("0000:0000:0000:0000");
+//		shape.add("1000:0000:0000:0000");
+//		shape.add("0100:0000:0000:0000");
+//		shape.add("0010:0000:0000:0000");
+//		shape.add("0001:0000:0000:0000");
+//		
+//		shapeText.add("0000:0000:0000:0000 (0)"); 
+//		shapeText.add("1000:0000:0000:0000 (1)");
+//		shapeText.add("0100:0000:0000:0000 (2)");
+//		shapeText.add("0010:0000:0000:0000 (3)");
+//		shapeText.add("0001:0000:0000:0000 (4)");
+//		
+//		int shapeSizeNew = 1;
+//		int shapeSizeOld = 0;
+//		
+//		
+//		while(shapeSizeNew != shapeSizeOld) {
+//			int shapeSizeOldOld = shapeSizeOld;
+//			shapeSizeOld = shape.size() - 1;
+//			
+//			for (int i = 0; i <= shapeSizeOld; i++) {
+//				for (int j = 0; j <= shapeSizeOld; j++) {
+//					if((i >= shapeSizeOldOld)||(j >= shapeSizeOldOld)) {
+//						
+////						if(shapeOnePointTwo[getShapesNumber(shape.get(i))] == true && shapeOnePointTwo[getShapesNumber(shape.get(j))] == true && shapeOnePointOne[getShapesNumber(shape.get(i))] == true && shapeOnePointOne[getShapesNumber(shape.get(j))] == true) {
+////							String temporaryString = stackerOld(shape.get(i),shape.get(j));
+////							shapeOnePointOne[getShapesNumber(temporaryString)] = true;
+////							
+////							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
+////								testIfShapeExist[getShapesNumber(temporaryString)] = true;
+////								shape.add(temporaryString);
+////								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
+////								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
+////							}
+////							
+////							temporaryString = stackerNew(shape.get(i),shape.get(j));
+////							shapeOnePointTwo[getShapesNumber(temporaryString)] = true;
+////							
+////							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
+////								testIfShapeExist[getShapesNumber(temporaryString)] = true;
+////								shape.add(temporaryString);
+////								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
+////								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
+////							}
+////						}
+//						else if(shapeOnePointTwo[getShapesNumber(shape.get(i))] == true && shapeOnePointTwo[getShapesNumber(shape.get(j))] == true) {
+//							String temporaryString = stackerNew(shape.get(i),shape.get(j));
+//							shapeOnePointTwo[getShapesNumber(temporaryString)] = true;
+//							
+//							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
+//								testIfShapeExist[getShapesNumber(temporaryString)] = true;
+//								shape.add(temporaryString);
+//								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
+//								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
+//							}
+//						}
+////						else if(shapeOnePointOne[getShapesNumber(shape.get(i))] == true && shapeOnePointOne[getShapesNumber(shape.get(j))] == true) {
+////							String temporaryString = stackerOld(shape.get(i),shape.get(j));
+////							shapeOnePointOne[getShapesNumber(temporaryString)] = true;
+////							
+////							if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
+////								testIfShapeExist[getShapesNumber(temporaryString)] = true;
+////								shape.add(temporaryString);
+////								shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = " + shape.get(i) + " (" + i + ") + " + shape.get(j) + " (" + j + ")");
+////								System.out.println(i + " " + j + " " + (shape.size() - 1) + " " + temporaryString);	
+////							}
+////						}
+//						
+//						
+//					}
+//				}
+//			}
+//			
+//			for (int i = shapeSizeOldOld; i <= shapeSizeOld; i++) {
+//				for (int j = 0; j <= 3; j++) {
+//					String temporaryString = splitter(shape.get(i), j);
+//					
+//					if(testIfShapeExist[getShapesNumber(temporaryString)] == false) {
+//						testIfShapeExist[getShapesNumber(temporaryString)] = true;
+//						shape.add(temporaryString);
+//						System.out.println(shape.size() + " " + temporaryString);
+//						
+//						
+//						if(j == 0) {
+//							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Left part of " + shape.get(i) + " (" + i + ")");
+//						}
+//						else if(j == 1) {
+//							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Upper part of " + shape.get(i) + " (" + i + ")");
+//						}
+//						else if(j == 2) {
+//							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Right part of " + shape.get(i) + " (" + i + ")");
+//						}
+//						else {
+//							shapeText.add(temporaryString + " (" + (shape.size() - 1) + ") = Lower part of " + shape.get(i) + " (" + i + ")");
+//						}
+//						
+//					}
+//				}
+//			}
+//	
+//			shapeSizeNew = shape.size() - 1;
+//		}
+//		
+//		System.out.println("Its textfile time!");
+//		
+//		try {
+//			File file = new File("ShapezTest1.txt");
+//		      
+//			if (!file.exists()) {
+//				file.createNewFile();
+//			}  
+//			PrintWriter pw = new PrintWriter(file);
+//			
+//			pw.println("shapes:");
+//			
+//			for (int i = 0; i < shapeText.size(); i++) {
+//				pw.println(shapeText.get(i));
+//			}
+//			
+//			pw.close();	
+//		}
+//		catch (IOException e) {
+//			e.printStackTrace();
+//			System.out.println("Error");
+//		}
+//		
+//		System.out.println("Done!");
 	}
 
 	
@@ -236,6 +235,40 @@ public class ShapezOldNew {
 			}
 		}
 		return(shapeRight);
+	}
+	
+	public static String stackerNew(String shapeLeft, String shapeRight) {
+		String output = shapeRight;
+		for (int layer = 3; layer >= 0; layer--) {
+			boolean replace = true;
+			for (int layerLeft = 0; layerLeft <= 3 - layer; layerLeft++) {
+				for (int corner = 0; corner <= 3; corner++) {
+					if((shapeLeft.charAt(corner + 5 * layerLeft) == '1' && shapeRight.charAt(corner + 5 * layerLeft + 5 * layer) == '1')) {
+						replace = false;
+						layerLeft = 1337;
+						layer = -1337;
+						break;
+					}
+				}
+			}
+			
+			if(replace) {
+				for (int layerRight = 0; layerRight <= 3; layerRight++) {
+					for (int corner = 0; corner <= 3; corner++) {
+						if(layerRight <= layer) {
+							output = changeCharInPosition(corner + 5 * layerRight, shapeRight.charAt(corner + 5 * layerRight), output);
+						}
+						else {
+							if(shapeLeft.charAt(corner + 5 * (layerRight - layer)) == '1') {
+								output = changeCharInPosition(corner + 5 * layerRight, shapeLeft.charAt(corner + 5 * (layerRight - layer)), output);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return(output);
 	}
 	
 	public static String changeCharInPosition(int position, char ch, String str){
