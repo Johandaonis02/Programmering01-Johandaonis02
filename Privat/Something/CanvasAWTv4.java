@@ -54,7 +54,6 @@ public class CanvasAWTv4 extends JFrame {
 								}
 							}
 						}
-						//test
 						else {
 							if(i > 0) {
 								g.setColor(Color.getHSBColor((float)(1 - (i % 3) * 0.4), (float)1, (float)0.5));
