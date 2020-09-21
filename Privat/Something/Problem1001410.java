@@ -1,25 +1,32 @@
 
 public class Problem1001410 {
+	static int base = 5;
+	
 	public static void main(String[] args) {
-		
-		
-		int stepRecord = 1;
-		for (int i = 1; i < 1000000000; i++) {
+		int stepRecord = 0;
+		for (int i = 1; i < 2000000000; i++) {
+			
+//			if(i % 1000000 == 0) {
+//				System.out.println(i);
+//			}
+			
 			boolean loop = false;
 			int step = 0;
-			int[] numberInSequence = new int[20];
+			int[] numberInSequence = new int[6];
 			numberInSequence[0] = i;
 			int newNumber = i;
 			while(!loop) {
-				if(step >= 10) {
-					stepRecord = step;
-					System.out.println(step + 1 + " new re " + i);
-				}
+				
 				step++;
-				newNumber = ((int)java.lang.Math.log10((double)newNumber) + 1) * digitSum(newNumber) * 2;
+				newNumber = numberOfDigits(newNumber) * digitSum(newNumber) * 2;
 				loop = numberInArray(numberInSequence,newNumber);
 				numberInSequence[step] = newNumber;
-				
+				if(loop) {
+					if(step > stepRecord) {
+						stepRecord = step;
+						System.out.println(step + " new record " + i);
+					}
+				}
 				
 			}
 			
@@ -27,7 +34,7 @@ public class Problem1001410 {
 				numberInSequence[j] = 0;
 			}
 		}
-		System.out.println("klar");
+		System.out.println("Done");
 	
 //		int a = 89;
 //		System.out.println((Math.floor(java.lang.Math.log10(a)) + 1) * digitSum(a) * 2);
@@ -44,11 +51,21 @@ public class Problem1001410 {
 		return false;
 	}
 	
+	public static int numberOfDigits(int a) {
+		int returnNumber = 0;
+		while(a != 0) {
+			a -= a % base;
+			a /= base;
+			returnNumber++;
+		}
+		return returnNumber;
+	}
+	
 	public static int digitSum(int a){
 		int returnNumber = 0;
 		while(a != 0) {
-			returnNumber += a % 10;
-			a /= 10;
+			returnNumber += a % base;
+			a /= base;
 		}
 		return returnNumber;
 	}
