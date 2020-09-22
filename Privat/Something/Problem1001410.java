@@ -1,6 +1,6 @@
 
 public class Problem1001410 {
-	static int base = 5;
+	static int base = 1000;
 	
 	public static void main(String[] args) {
 		int stepRecord = 0;
@@ -12,7 +12,7 @@ public class Problem1001410 {
 			
 			boolean loop = false;
 			int step = 0;
-			int[] numberInSequence = new int[6];
+			int[] numberInSequence = new int[100];
 			numberInSequence[0] = i;
 			int newNumber = i;
 			while(!loop) {
