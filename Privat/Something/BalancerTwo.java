@@ -1,5 +1,5 @@
 
-public class Balancer {
+public class BalancerTwo {
 	public static void main(String[] args) {
 		int[] balancersNeeded = new int[1024];
 		int[] balancersNeededOld = new int[1024];
@@ -12,21 +12,18 @@ public class Balancer {
 			balancersNeededOld[i] = 10000;
 		}
 		
-		
-		int a = 0;
 		boolean exit = false;
 		
 		while(!exit) {
-			System.out.println(a);
-			a++;
+
 			for (int i = 2; i < balancersNeeded.length; i++) {
 				for (int j = 2; j < balancersNeeded.length; j++) {
 					if(j*i < 1024) {
 						if(balancersNeeded[i*j] >= j * balancersNeeded[i] + i * balancersNeeded[j]) {
 							balancersNeeded[i*j] = j * balancersNeeded[i] + i * balancersNeeded[j];
 							for (int k = i*j - 1; k > 2 ; k--) {
-								if(balancersNeeded[k] >= j * balancersNeeded[i] + i * balancersNeeded[j]) {
-									balancersNeeded[k] = j * balancersNeeded[i] + i * balancersNeeded[j];
+								if(balancersNeeded[k] >= j * balancersNeeded[i] + i * balancersNeeded[j] - (int)((i*j - k)/2)) {
+									balancersNeeded[k] = j * balancersNeeded[i] + i * balancersNeeded[j] - (int)((i*j - k)/2);
 								}
 							}
 						}
@@ -49,7 +46,10 @@ public class Balancer {
 //			}
 //		}
 		
-		for (int i = 2; i < 132; i++) {
+		
+		System.out.println(0 + " " + 0);
+		System.out.println(1 + " " + 0);
+		for (int i = 2; i < 256; i++) {
 			System.out.println(i + " " + balancersNeeded[i]);
 		}
 	}
