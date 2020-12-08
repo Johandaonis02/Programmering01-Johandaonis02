@@ -9,6 +9,7 @@ public class ThreeInARowAI {
 				cell[i][j] = '_';
 			}
 		}
+		display(cell);
 		System.out.println(ai(round, cell));
 	}
 	
@@ -31,17 +32,19 @@ public class ThreeInARowAI {
 						if(WhoWon(cell) == 'X') {
 							return(-1);
 						}
-						if(ai(round + 1, cell) < returnNumber) {
+						if(ai(round + 1, cell.clone()) < returnNumber) {
 							returnNumber = ai(round + 1, cell);
 							place = 3 * i + j;
 						}
 						cell[i][j] = '_';
+						
+						display(cell);
+						System.out.println("test");
 					}
 				}
 			}
-			if(round == 0) {
-				System.out.println("place: " + place);
-			}
+			System.out.println("place: " + place);
+				
 			return(returnNumber);
 		}
 		
@@ -62,13 +65,16 @@ public class ThreeInARowAI {
 							place = 3 * i + j;
 						}
 						cell[i][j] = '_';
+						
+						display(cell);
+						System.out.println("test");
 					}
 				}
 			}
 			return(returnNumber);
 		}
 		
-		System.out.println("TEst");
+		System.out.println("Test");
 		return(10);
 	}
 	

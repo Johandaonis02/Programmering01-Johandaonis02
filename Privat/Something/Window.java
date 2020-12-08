@@ -21,8 +21,8 @@ public class Window extends JFrame implements MouseListener {
 	private MyCanvas m_canvas = new MyCanvas();
 	public Window() {
 		setLayout(new BorderLayout());
-		setSize(500, 500);
-		setTitle("4 in a row");
+		setSize(1000, 1000);
+		setTitle("ball");
 		add("Center", m_canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -31,7 +31,7 @@ public class Window extends JFrame implements MouseListener {
 		
 		setVisible(true);
 		
-		addMouseListener(this);
+		//addMouseListener(this);
 		
 		while(true) {
 			m_canvas.repaint();
@@ -49,8 +49,8 @@ public class Window extends JFrame implements MouseListener {
 		double a = 0.1;
 		double vx = 2;
 		double vy = 0;
-		double x = 250;
-		double y = 250;
+		double x = 500;
+		double y = 500;
 	}
 	
 	private class MyCanvas extends Canvas {
@@ -58,8 +58,8 @@ public class Window extends JFrame implements MouseListener {
 		
 		public MyCanvas() {
 			balls.add(new Ball());
-			balls.add(new Ball());
-			balls.get(1).y = 100;
+			//balls.add(new Ball());
+			//balls.get(1).y = 100;
 		}
 		
 		@Override
@@ -69,52 +69,56 @@ public class Window extends JFrame implements MouseListener {
 				ball.x += ball.vx;
 				ball.y += ball.vy;
 				ball.vy += ball.a;
-				if(ball.y < 0) {
-					ball.vy = -ball.vy;
-				}
-				else if(ball.y > getHeight() - 1 * ball.radius - 50) {
-					ball.vy = -ball.vy;
-				}
-				if(ball.x < 0) {
-					ball.vx = -ball.vx;
-				}
-				else if(ball.x > getHeight() - 1 * ball.radius - 22) {
-					ball.vx = -ball.vx;
-				}
+//				if(ball.y < 0) {
+//					ball.vy = -ball.vy;
+//				}
+//				else if(ball.y > getHeight() - 1 * ball.radius - 50) {
+//					ball.vy = -ball.vy;
+//				}
+//				if(ball.x < 0) {
+//					ball.vx = -ball.vx;
+//				}
+//				else if(ball.x > getHeight() - 1 * ball.radius - 22) {
+//					ball.vx = -ball.vx;
+//				}
+				g.setColor(Color.BLACK);
 				g.drawOval((int)ball.x, (int)ball.y, 2 * (int)ball.radius, 2 * (int)ball.radius);
 			}
+			g.setColor(Color.BLACK);
+			g.drawOval((int)500, (int)500, 2 * (int)100, 2 * (int)100);
+			
 			invalidate();
 		}
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hej");
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hej");		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hej");
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hej");
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hej");
-	}
+//	@Override
+//	public void mouseClicked(MouseEvent e) {
+//		// TODO Auto-generated method stub
+//		System.out.println("hej");
+//	}
+//
+//	@Override
+//	public void mouseEntered(MouseEvent e) {
+//		// TODO Auto-generated method stub
+//		System.out.println("hej");		
+//	}
+//
+//	@Override
+//	public void mouseExited(MouseEvent e) {
+//		// TODO Auto-generated method stub
+//		System.out.println("hej");
+//	}
+//
+//	@Override
+//	public void mousePressed(MouseEvent e) {
+//		// TODO Auto-generated method stub
+//		System.out.println("hej");
+//	}
+//
+//	@Override
+//	public void mouseReleased(MouseEvent e) {
+//		// TODO Auto-generated method stub
+//		System.out.println("hej");
+//	}
 }
 
