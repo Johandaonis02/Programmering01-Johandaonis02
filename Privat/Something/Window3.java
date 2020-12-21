@@ -53,7 +53,7 @@ public class Window3 extends JFrame {
 		public void paint(Graphics g) {
 			ArrayList<Ball> balls = new ArrayList<Ball>();
 			
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 10; i++) {
 				balls.add(new Ball());	
 			}	
 			
@@ -82,16 +82,16 @@ public class Window3 extends JFrame {
 					
 					
 					if(ball.y < 0) {
-					ball.vy = -ball.vy;
+					ball.vy = Math.abs(ball.vy);
 					}
-					else if(ball.y > getHeight() - 1 * ball.radius - 50) {
-						ball.vy = -ball.vy;
+					else if(ball.y > getHeight() - ball.radius - 50) {
+						ball.vy = -Math.abs(ball.vy);
 					}
 					if(ball.x < 0) {
-						ball.vx = -ball.vx;
+						ball.vx = Math.abs(ball.vx);
 					}
-					else if(ball.x > getHeight() - 1 * ball.radius - 22) {
-						ball.vx = -ball.vx;
+					else if(ball.x > getHeight() - ball.radius - 22) {
+						ball.vx = -Math.abs(ball.vx);
 					}
 					
 					for (int j = 0; j < balls.size(); j++) {
