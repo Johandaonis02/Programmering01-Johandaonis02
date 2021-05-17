@@ -53,7 +53,7 @@ public class Window3 extends JFrame {
 		public void paint(Graphics g) {
 			ArrayList<Ball> balls = new ArrayList<Ball>();
 			
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 2; i++) {
 				balls.add(new Ball());	
 			}	
 			

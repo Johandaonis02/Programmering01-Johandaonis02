@@ -15,7 +15,7 @@ public class CanvasAWTv3 extends JFrame {
 	
 	public CanvasAWTv3() {
 		setLayout(new BorderLayout());
-		setSize(1000, 1000);
+		setSize(1050, 1050);
 		setTitle("4 in a row");
 		add("Center", canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,8 +36,8 @@ public class CanvasAWTv3 extends JFrame {
 			int turns = 1000;
 			double zExponent = 2;
 			
-			for(int x = 1; x < 1000; x++) {
-				for(int y = 1; y < 1000; y++) {
+			for(int x = 1; x < 1050; x++) {
+				for(int y = 1; y < 1050; y++) {
 					double newX = 0;
 					double newY = 0;
 					for(int i = 2; i <= turns; i++) {
@@ -70,7 +70,7 @@ public class CanvasAWTv3 extends JFrame {
 							}
 						}
 						else {
-							g.setColor(Color.getHSBColor((float)(1 - i * 0.01), (float)1, (float)0.5));
+							g.setColor(Color.getHSBColor((float)(1 - i * 0.07), (float)1, (float)0.5));
 //							if(i % 3 == 0) {g.setColor(new Color(0xf0f0f0));}
 //							else if(i % 3 == 1) {g.setColor(new Color(0xd0f0f0));}
 //							else if(i % 3 == 2) {g.setColor(new Color(0xb0f0f0));}
