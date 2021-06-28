@@ -1,15 +1,22 @@
 
 public class OldChildhoodPuzzle {
-	static int[][] color = {{1,2,4,4},{1,3,1,2},{2,3,1,3},{4,2,4,1},{1,3,4,2},{1,2,4,3},{4,3,2,1},{4,3,1,2},{4,2,4,3}};
-	static char[][] shape = {{'h','b','b','h'},{'b','b','h','h'},{'b','b','h','h'},{'h','b','b','h'},{'b','b','h','h'},{'b','b','h','h'},{'h','b','b','h'},{'b','b','h','h'},{'b','b','h','h'}};
+//	static int[][] color = {{1,2,4,4},{1,3,1,2},{2,3,1,3},{4,2,4,1},{1,3,4,2},{1,2,4,3},{4,3,2,1},{4,3,1,2},{4,2,4,3}};
+//	static char[][] shape = {{'h','b','b','h'},{'b','b','h','h'},{'b','b','h','h'},{'h','b','b','h'},{'b','b','h','h'},{'b','b','h','h'},{'h','b','b','h'},{'b','b','h','h'},{'b','b','h','h'}};
+	
+	static int[][] color = {{1,2,3,4},{3,4,2,1},{4,2,1,3},{1,4,3,2},{3,1,2,4},{2,3,1,1},{1,2,3,4},{3,4,2,1},{2,1,4,3}};
+	static char[][] shape = {{'b','b','b','h'},{'h','b','b','b'},{'h','h','h','b'},{'b','b','h','b'},{'b','h','h','h'},{'b','b','h','h'},{'h','h','b','h'},{'h','b','b','h'},{'h','b','h','h'}};
 
 
 	static int[] position = new int[9];
 	static int[] rotation = new int[9];
 	
 	public static void main(String[] args) {
-		
-		while(true) {	
+		int c = 0;
+		while(true) {
+			c++;
+			if(c%100000000 == 0) {
+				System.out.println(c);
+			}
 			for (int i = 0; i < 9; i++) {
 				position[i] = -1;
 			}
@@ -33,7 +40,7 @@ public class OldChildhoodPuzzle {
 						System.out.println(position[i] + " " + rotation[i]);
 					}
 				}
-			}
+			} 
 		}
 	}
 	
